@@ -1,7 +1,8 @@
 import React from "react";
+import * as ENV from "../files/ENV.json";
 
 import { GoogleLogin } from "react-google-login";
-import { useGoogleLogin } from "react-google-login";
+// import { useGoogleLogin } from "react-google-login";
 
 export default function MainPage() {
   const responseGoogle = (response) => {
@@ -12,7 +13,7 @@ export default function MainPage() {
   return (
     <div>
       <GoogleLogin
-        clientId="724688854076-ou1acbgrcampkq6fcg8ljvpm02jl1s3k.apps.googleusercontent.com"
+        clientId={ENV.clientApiKey}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
