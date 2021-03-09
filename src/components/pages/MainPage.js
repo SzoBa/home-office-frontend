@@ -12,12 +12,7 @@ export default function MainPage() {
   return (
     <div>
       <GoogleLogin
-        clientId=""
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            This is my custom Google button
-          </button>
-        )}
+        clientId="724688854076-ou1acbgrcampkq6fcg8ljvpm02jl1s3k.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
