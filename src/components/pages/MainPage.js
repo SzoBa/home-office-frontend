@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import * as ENV from "../files/ENV.json";
 
-import { GoogleLogin } from "react-google-login";
-// import { useGoogleLogin } from "react-google-login";
-
 export default function MainPage() {
-  const responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-  };
+  const [googleLoginUrl, setGoogleLoginUrl] = useState("");
+
+  useEffect(() => {
+    const options = {
+      headers: {
+        Accept: "application/json",
+      },
+      url: ENV.googleLogin,
+    };
+    const getData = async () => {
+      const response = await axios(options);
+      setGoogleLoginUrl(response.data.url);
+    };
+    getData().catch((error) => {
+      console.log(error.response.data);
+    });
+  }, []);
 
   return (
     <div>
-      <GoogleLogin
-        clientId={ENV.clientApiKey}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-        scope="https://www.googleapis.com/auth/gmail.readonly"
-      />
+      {googleLoginUrl && (
+        <a className="App-link" href={googleLoginUrl}>
+          Sign in with Google
+        </a>
+      )}
     </div>
   );
 }
