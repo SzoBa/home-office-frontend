@@ -4,6 +4,7 @@ import MainPage from "../components/pages/MainPage";
 import LoginGooglePage from "../components/pages/LoginGooglePage";
 import LoginGithubPage from "../components/pages/LoginGithubPage";
 import LoginPage from "../components/pages/LoginPage";
+import EmailPage from "../components/pages/EmailPage";
 
 export default function MainContainer() {
   return (
@@ -15,6 +16,7 @@ export default function MainContainer() {
         <Route path="/auth/google" component={LoginGooglePage} />
         <Route path="/auth/github" component={LoginGithubPage} />
         <Route path="/logout" component={MainPage} />
+        <Route path="/email" component={EmailPage} />
       </div>
     </div>
   );
