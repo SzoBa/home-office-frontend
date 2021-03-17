@@ -20,7 +20,7 @@ const useGetData = (url, token, setErrorMessage) => {
       setIsLoading(false);
     };
     getData().catch((error) => {
-      setErrorMessage(error.response.data);
+      // setErrorMessage(error.response.data);
     });
   }, [url, token, setErrorMessage]);
 
