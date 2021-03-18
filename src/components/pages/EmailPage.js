@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import UseGetData from "../../hooks/UseGet";
 import * as ENV from "../files/ENV.json";
