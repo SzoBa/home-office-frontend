@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import * as ENV from "../files/ENV.json";
 
@@ -40,6 +41,7 @@ export default function LoginPage() {
 
   return (
     <div>
+      <Link to="/">Back to main</Link>
       {googleLoginUrl && (
         <a className="App-link" href={googleLoginUrl}>
           Sign in with Google
