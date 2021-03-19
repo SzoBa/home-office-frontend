@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function MainPage() {
   const geo = navigator.geolocation;
@@ -11,9 +10,7 @@ export default function MainPage() {
 
   return (
     <div>
-      <Link to="/registration">Registration</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/email">Emails</Link>
+      <p>This is the main page</p>
     </div>
   );
 }
