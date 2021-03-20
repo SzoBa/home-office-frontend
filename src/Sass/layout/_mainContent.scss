@@ -1,0 +1,8 @@
+#main {
+  height: 100%;
+  width: 100%;
+}
+
+#mainContentContainer {
+  @include fixedPositionSetup(10%, 6%, 90%, 89%);
+}
