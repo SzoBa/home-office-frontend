@@ -9,7 +9,7 @@ export default function MainPage() {
   });
 
   return (
-    <div>
+    <div id="mainPageContainer">
       <p>This is the main page</p>
     </div>
   );

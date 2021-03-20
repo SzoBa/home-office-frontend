@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar = (props) => {
   return (
-    <div>
+    <div id="sidebarContainer">
       <p>This is the Sidebar</p>
     </div>
   );
