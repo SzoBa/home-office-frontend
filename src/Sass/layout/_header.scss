@@ -1,0 +1,7 @@
+#headerContainer {
+  @include fixedPositionSetup(0, 0, 100%, 6%);
+  @include flexSetup(space-between);
+
+  z-index: 9999;
+  padding: 0 30px 0 30px;
+}
