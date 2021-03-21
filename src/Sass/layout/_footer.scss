@@ -1,5 +1,5 @@
 #footerContainer {
-  @include fixedPositionSetup(0, 95%, 100%, 5%);
+  // @include fixedPositionSetup(0, 95%, 100%, 5%);
   @include flexSetup(space-between);
 
   z-index: 999;

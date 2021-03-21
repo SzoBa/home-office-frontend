@@ -1,6 +1,6 @@
 #navbarContainer {
   @include flexSetup(left, center, column);
-  @include fixedPositionSetup(0, 6%, 10%, 89%);
+  @include fixedPositionSetup(0, 6%, 10%, 94%);
   min-height: 89%;
 
   z-index: 999;
