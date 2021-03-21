@@ -13,5 +13,11 @@
   height: $height;
 }
 
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
 // @include flexCenterExample(parameters)
 // @extend form; - inheritance from form and you can change specific props if you want
