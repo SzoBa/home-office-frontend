@@ -1,8 +1,8 @@
 #headerContainer {
   @include fixedPositionSetup(0, 0, 100%, 6%);
   @include flexSetup(flex-end);
-}
 
-#headerContainer > a {
-  padding: 0 2% 0 0;
+  a {
+    padding: 0 2% 0 0;
+  }
 }
