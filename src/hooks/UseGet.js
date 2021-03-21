@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const useGetData = (url, token, setErrorMessage) => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchedData, setFetchedData] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const options = {
@@ -20,9 +22,11 @@ const useGetData = (url, token, setErrorMessage) => {
       setIsLoading(false);
     };
     getData().catch((error) => {
-      // setErrorMessage(error.response.data);
+      if (error.response.status === 422) {
+        return history.push("/login");
+      }
     });
-  }, [url, token, setErrorMessage]);
+  }, [url, token, setErrorMessage, history]);
 
   return [isLoading, fetchedData];
 };

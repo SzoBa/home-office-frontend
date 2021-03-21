@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import MainContainer from "./containers/MainContainer";
-import "./style/css/App.css";
+import "./style/app.css";
 
 function App() {
   return (
