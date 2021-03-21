@@ -1,9 +1,4 @@
-#main {
-  height: 100%;
-  width: 100%;
-}
-
-#mainContentContainer {
+#main_content_container {
   @include fixedPositionSetup(10%, 6%, 90%, 94%);
   overflow: auto;
   &::-webkit-scrollbar {
