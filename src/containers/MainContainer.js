@@ -12,11 +12,11 @@ import Sidebar from "../components/layout/Sidebar";
 
 export default function MainContainer() {
   return (
-    <div id="main">
+    <div>
       <Header />
       <Navbar />
       {/* <Sidebar /> */}
-      <div id="mainContentContainer">
+      <div id="main_content_container">
         <Route exact path="/" component={MainPage} />
         <Route path="/registration" component={MainPage} />
         <Route path="/login" component={LoginPage} />
