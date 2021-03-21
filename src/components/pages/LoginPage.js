@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import UsePostData from "../../hooks/UsePostData";
 import * as ENV from "../files/ENV.json";
+import { useDispatch } from "react-redux";
+import { login } from "../../actions/index";
 
 export default function LoginPage() {
   const [googleLoginUrl, setGoogleLoginUrl] = useState("");
@@ -10,6 +12,7 @@ export default function LoginPage() {
 
   const [errorMessage, setErrorMessage] = useState([]);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,13 +23,9 @@ export default function LoginPage() {
     UsePostData(ENV.simpleLogin, "token, if exists", userObject, (response) => {
       setErrorMessage([]);
       if (response.status === 201) {
-        // setUser({
-        //   username: response.data.username,
-        //   token: response.data.token,
-        // });
+        dispatch(login(response.data));
         return history.push("/");
       }
-      console.log(response);
       Object.entries(response).forEach(([k, v]) => {
         v.forEach((value) => {
           setErrorMessage((old) => [...old, value]);
@@ -78,17 +77,25 @@ export default function LoginPage() {
           <input type="password" name="password" />
           <button type="submit">Login</button>
         </form>
+        <div>
+          {googleLoginUrl && (
+            <a className="button_text" href={googleLoginUrl}>
+              <div className="social_button">
+                <span id="google_icon"></span>
+                Sign in with Google
+              </div>
+            </a>
+          )}
 
-        {googleLoginUrl && (
-          <a className="App-link" href={googleLoginUrl}>
-            Sign in with Google
-          </a>
-        )}
-        {githubLoginUrl && (
-          <a className="App-link" href={githubLoginUrl}>
-            Sign in with Github
-          </a>
-        )}
+          {githubLoginUrl && (
+            <a className="button_text" href={githubLoginUrl}>
+              <div className="social_button">
+                <span id="github_icon"></span>
+                Sign in with Github
+              </div>
+            </a>
+          )}
+        </div>
         {errorMessage === null
           ? ""
           : errorMessage.map((data, index) => (
