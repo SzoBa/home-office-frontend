@@ -15,7 +15,7 @@ export default function MainContainer() {
     <div id="main">
       <Header />
       <Navbar />
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div id="mainContentContainer">
         <Route exact path="/" component={MainPage} />
         <Route path="/registration" component={MainPage} />

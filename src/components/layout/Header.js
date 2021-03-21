@@ -6,7 +6,6 @@ const Header = (props) => {
     <div id="headerContainer">
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
-      <Link to="/email">Emails</Link>
     </div>
   );
 };
