@@ -9,16 +9,16 @@ form > button {
     color(formButtonDark) 5%,
     color(formButtonLight) 100%
   );
-  box-shadow: inset 0 1px 0 0 color(formButtonShadow);
-  border: 1px solid color(formButtonBorder);
-  border-radius: 5px;
-  color: color(formButtonText);
+  width: 100px;
   font-weight: bold;
   font-size: 1.1em;
-  padding: 5px;
+  color: color(formButtonText);
+  box-shadow: inset 0 1px 0 0 color(formButtonShadow);
+  border: 1px solid color(formButtonBorder);
+  border-radius: $borderRadius;
+  padding: $padding;
   text-shadow: 0 1px 0 color(formButtonTextShadow);
-  width: 100px;
-  margin: 10px auto;
+  margin: $upDownMargin;
   &:hover {
     background: linear-gradient(
       to bottom,
