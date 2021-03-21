@@ -1,4 +1,4 @@
-#sidebarContainer {
+#sidebar_container {
   @include flexSetup(left, center, column);
   @include fixedPositionSetup(90%, 6%, 10%, 89%);
   min-height: 89%;
