@@ -24,8 +24,8 @@ export default function MainContainer() {
         <Route path="/auth/github" component={LoginGithubPage} />
         <Route path="/logout" component={MainPage} />
         <Route path="/email" component={EmailPage} />
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
