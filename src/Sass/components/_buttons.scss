@@ -3,6 +3,11 @@ button {
   outline: none;
 }
 
+a.button_text {
+  display: inline-block;
+  font-weight: bold;
+}
+
 form > button {
   background: linear-gradient(
     to bottom,
