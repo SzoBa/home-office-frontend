@@ -13,6 +13,17 @@ $colors: (
 $inputShadowColor: rgba(0, 0, 0, 0.18);
 $inputBorderColor: #cbcbcb;
 
+$borderRadius: 5px;
+$padding: 5px;
+$upDownMargin: 10px auto; //maybe 1-2em instead?
+
+$desktop: 900px;
 // ::after {
 //     content: hello;
 // }
+//ul -> list-style-type: none
+//margin: max(40px) - no Sass specific :D
+//height: fit-content???
+//display: grid
+//grid-template-areas: 'bla bla . . .'
+//grid-area: bla - on an item  makes it occupy 2 grids
