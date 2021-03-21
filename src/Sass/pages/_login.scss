@@ -13,3 +13,38 @@
   border-radius: 20px;
   margin: 0% auto;
 }
+
+#content_div_login > div {
+  padding: $padding * 3;
+  @include flexSetup(space-between);
+}
+
+.social_button {
+  display: inline-block;
+  background: white;
+  color: color(socialButton);
+  padding: $padding;
+  border-radius: $borderRadius;
+  border: thin solid color(socialButtonBorder);
+  box-shadow: 1px 1px 1px color(socialButtonShadow);
+  white-space: nowrap;
+}
+
+.social_button span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+
+#google_icon {
+  background: url("/src/components/images/Google.jpg") transparent 50% no-repeat;
+  background-size: cover;
+}
+
+#github_icon {
+  background: url("/src/components/images/Github.png") transparent 50% no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+  padding: $padding;
+}
