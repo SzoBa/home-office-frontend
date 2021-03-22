@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...params }) => {
   const login = useSelector((state) => state.login);
-  console.log(login.sanctum_token);
 
   return (
     <Route
