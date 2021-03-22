@@ -9,7 +9,7 @@ const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
       return {
-        name: action.payload.name,
+        name: action.payload.username,
         sanctum_token: action.payload.token,
       };
 
