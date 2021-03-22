@@ -10,6 +10,7 @@ import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
 import Sidebar from "../components/layout/Sidebar";
 import PrivateRoute from "./PrivateRoute";
+import RegistrationPage from "../components/pages/RegistrationPage";
 
 export default function MainContainer() {
   return (
@@ -19,7 +20,7 @@ export default function MainContainer() {
       {/* <Sidebar /> */}
       <div id="main_content_container">
         <Route path="/" component={MainPage} exact />
-        <Route path="/registration" component={MainPage} />
+        <Route path="/registration" component={RegistrationPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/auth/google" component={LoginGooglePage} />
         <Route path="/auth/github" component={LoginGithubPage} />
