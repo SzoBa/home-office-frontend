@@ -67,7 +67,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <div id="login_container">
+    <div className="login_container">
       <div id="content_div_login">
         <h2>Login</h2>
         <form method="post" onSubmit={handleSubmit}>
