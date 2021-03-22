@@ -19,5 +19,17 @@
   }
 }
 
+@mixin contentDiv($minHeight: 400px, $maxWidth: 50%) {
+  min-height: $minHeight;
+  max-width: $maxWidth;
+  box-shadow: 0 0 0 1px color(contentDivShadowOpLow),
+    0 2px 5px color(contentDivShadowOpMax),
+    inset 0 -1px 2px color(contentDivShadowOpMid);
+  padding: $padding * 5 $padding * 15 $padding * 5;
+  opacity: 0.9;
+  border-radius: $borderRadius * 4;
+  margin: $sideAutoMargin;
+}
+
 // @include flexCenterExample(parameters)
 // @extend form; - inheritance from form and you can change specific props if you want
