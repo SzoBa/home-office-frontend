@@ -5,12 +5,24 @@
 }
 
 #content_div_login {
-  @include contentDiv();
+  @include contentDiv(400px, 40%);
+  @include desktop() {
+    padding: $padding * 5 $padding * 15 $padding * 5;
+  }
 }
 
 #content_div_login > div {
-  padding: $padding * 5;
-  @include flexSetup(space-between);
+  @include flexSetup(space-between, center, column);
+  padding: $padding;
+
+  a {
+    padding: $padding * 2;
+  }
+
+  @include desktop($desktop * 1.8) {
+    padding: $padding * 5;
+    flex-direction: row;
+  }
 }
 
 #google_icon {
