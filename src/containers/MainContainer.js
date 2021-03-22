@@ -9,6 +9,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
 import Sidebar from "../components/layout/Sidebar";
+import PrivateRoute from "./PrivateRoute";
 
 export default function MainContainer() {
   return (
@@ -17,13 +18,13 @@ export default function MainContainer() {
       <Navbar />
       {/* <Sidebar /> */}
       <div id="main_content_container">
-        <Route exact path="/" component={MainPage} />
+        <Route path="/" component={MainPage} exact />
         <Route path="/registration" component={MainPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/auth/google" component={LoginGooglePage} />
         <Route path="/auth/github" component={LoginGithubPage} />
-        <Route path="/logout" component={MainPage} />
-        <Route path="/email" component={EmailPage} />
+        <PrivateRoute path="/logout" component={MainPage} />
+        <PrivateRoute path="/email" component={EmailPage} />
         <Footer />
       </div>
     </div>
