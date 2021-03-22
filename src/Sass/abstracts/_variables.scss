@@ -11,16 +11,21 @@ $colors: (
   socialButton: #444,
   socialButtonBorder: grey,
   socialButtonShadow: grey,
+  socialButtonBackground: white,
+  contentDivShadowOpLow: rgba(14, 41, 57, 0.12),
+  contentDivShadowOpMax: rgba(14, 41, 57, 0.44),
+  contentDivShadowOpMid: rgba(14, 41, 57, 0.15),
+  inputBorderColor: #cbcbcb,
+  inputShadowColor: rgba(0, 0, 0, 0.18),
 );
-
-$inputShadowColor: rgba(0, 0, 0, 0.18);
-$inputBorderColor: #cbcbcb;
 
 $borderRadius: 5px;
 $padding: 5px;
 $upDownMargin: 10px auto; //maybe 1-2em instead?
-
+$sideAutoMargin: 0 auto;
 $desktop: 900px;
+$socialButtonSpanSize: 42px;
+
 // ::after {
 //     content: hello;
 // }
