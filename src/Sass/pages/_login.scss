@@ -1,40 +1,16 @@
-#login_container {
+.login_container {
   min-height: 94%;
   padding-top: 5%;
+  text-align: center;
 }
 
 #content_div_login {
-  min-height: 400px;
-  max-width: 60%;
-  box-shadow: 0 0 0 1px rgba(14, 41, 57, 0.12), 0 2px 5px rgba(14, 41, 57, 0.44),
-    inset 0 -1px 2px rgba(14, 41, 57, 0.15);
-  padding: 20px 5% 10px;
-  opacity: 0.9;
-  border-radius: 20px;
-  margin: 0% auto;
+  @include contentDiv();
 }
 
 #content_div_login > div {
-  padding: $padding * 3;
+  padding: $padding * 5;
   @include flexSetup(space-between);
-}
-
-.social_button {
-  display: inline-block;
-  background: white;
-  color: color(socialButton);
-  padding: $padding;
-  border-radius: $borderRadius;
-  border: thin solid color(socialButtonBorder);
-  box-shadow: 1px 1px 1px color(socialButtonShadow);
-  white-space: nowrap;
-}
-
-.social_button span {
-  display: inline-block;
-  vertical-align: middle;
-  width: 42px;
-  height: 42px;
 }
 
 #google_icon {
@@ -47,4 +23,8 @@
   background-size: cover;
   background-origin: content-box;
   padding: $padding;
+}
+
+.content_div_social {
+  @include contentDiv(200px, 25%);
 }

@@ -32,3 +32,21 @@ form > button {
     );
   }
 }
+
+.social_button {
+  display: inline-block;
+  background: color(socialButtonBackground);
+  color: color(socialButton);
+  padding: $padding;
+  border-radius: $borderRadius;
+  border: thin solid color(socialButtonBorder);
+  box-shadow: 1px 1px 1px color(socialButtonShadow);
+  white-space: nowrap;
+}
+
+.social_button span {
+  display: inline-block;
+  vertical-align: middle;
+  width: $socialButtonSpanSize;
+  height: $socialButtonSpanSize;
+}
