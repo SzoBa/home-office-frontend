@@ -28,15 +28,22 @@ const LoginGooglePage = (props) => {
   }, [props.location.search, dispatch]);
 
   return (
-    <div>
+    <div className="login_container">
       {data.username ? (
-        <div>
-          Login successful!
-          <p>Logged in as: {data.username}</p>
-          <button onClick={() => history.push("/")}>Okay</button>
+        <div className="content_div_social">
+          <form>
+            <h2>Login successful!</h2>
+            <h4>Logged in as:</h4>
+            <label>{data.username}</label>
+            <button onClick={() => history.push("/")}>Okay</button>
+          </form>
         </div>
       ) : (
-        "Loading..."
+        <div className="content_div_social">
+          <form>
+            <h2>Loading...</h2>
+          </form>
+        </div>
       )}
     </div>
   );
