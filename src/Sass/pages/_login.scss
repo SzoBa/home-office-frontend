@@ -1,7 +1,5 @@
 .login_container {
-  min-height: 94%;
-  padding-top: 5%;
-  text-align: center;
+  @include contentContainerSetup();
 }
 
 #content_div_login {

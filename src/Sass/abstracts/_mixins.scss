@@ -19,6 +19,16 @@
   }
 }
 
+@mixin contentContainerSetup(
+  $minHeight: 94%,
+  $padding: 5% 0 0 0,
+  $textAlign: center
+) {
+  min-height: $minHeight;
+  padding: $padding;
+  text-align: $textAlign;
+}
+
 @mixin contentDiv($minHeight: 400px, $maxWidth: 50%) {
   min-height: $minHeight;
   max-width: $maxWidth;

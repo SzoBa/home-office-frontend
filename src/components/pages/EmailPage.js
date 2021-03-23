@@ -11,7 +11,7 @@ export default function EmailPage() {
   )[1];
 
   return (
-    <div>
+    <div className="email_container">
       {mailsData.messages
         ? mailsData.messages.map((mail, index) => <p key={index}>{mail.id}</p>)
         : "Loading"}
