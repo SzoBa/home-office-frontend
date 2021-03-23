@@ -1,4 +1,4 @@
-#navbar_container {
+#navbar_container_open {
   @include flexSetup(left, center, column);
   @include fixedPositionSetup(0, 6%, 10%, 94%);
   min-height: 89%;
@@ -31,4 +31,8 @@
   @include desktop {
     flex-direction: column; //purely for testing
   }
+}
+
+#navbar_container_close {
+  @include fixedPositionSetup(0, 6%, 0, 94%);
 }
