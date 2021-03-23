@@ -10,12 +10,14 @@ export default function MainPage() {
 
   const geo = navigator.geolocation;
   geo.getCurrentPosition((pos) => {
-    dispatch(
-      setLocation({
-        longitude: pos.coords.longitude,
-        latitude: pos.coords.latitude,
-      })
-    );
+    if (locationData.longitude === 0 && locationData.longitude === 0) {
+      dispatch(
+        setLocation({
+          longitude: pos.coords.longitude,
+          latitude: pos.coords.latitude,
+        })
+      );
+    }
   });
   const weather = UseGetData(
     ENV.actualLocalWeather +
@@ -27,25 +29,30 @@ export default function MainPage() {
 
   return (
     <div id="main_page_container">
-      <p>This is the main page</p>
       {weather.name ? (
         <div>
           <h4>Weather data</h4>
           <p>Location: {weather.name}</p>
           <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
-          <p>Temperature: {(weather.main.temp - 272.15).toFixed(2)}</p>
-          <p>Feels like: {(weather.main.feels_like - 272.15).toFixed(2)}</p>
-          <p>Max temp: {(weather.main.temp_max - 272.15).toFixed(2)}</p>
-          <p>Min temp: {(weather.main.temp_min - 272.15).toFixed(2)}</p>
-          <p>Humidity: {weather.main.humidity}</p>
-          <p>Pressure: {weather.main.pressure}</p>
+          <p>Temperature: {weather.main.temp} C°</p>
+          <p>Feels like: {weather.main.feels_like} C°</p>
+          <p>Max temp: {weather.main.temp_max} C°</p>
+          <p>Min temp: {weather.main.temp_min} C°</p>
+          <p>Cloudiness: {weather.clouds.all} %</p>
+          <p>Humidity: {weather.main.humidity} %</p>
+          {weather.rain && <p>{weather.rain["1h"]} mm / last hour</p>}
+          <p>Pressure: {weather.main.pressure} hPa</p>
           <p>Wind:</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;Degree: {weather.wind.deg}</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;Speed: {weather.wind.speed}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;Degree: {weather.wind.deg}°</p>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;Speed:{" "}
+            {(weather.wind.speed * 3.6).toFixed(0)} km/h
+          </p>
           <p>Country code: {weather.sys.country}</p>
-          {weather.weather.map((weatherData) => (
-            <p>
-              {weatherData.description} - {weatherData.main}
+          {weather.weather.map((weatherData, index) => (
+            <p key={index}>
+              General: {weatherData.main} - Description:{" "}
+              {weatherData.description}
             </p>
           ))}
         </div>
