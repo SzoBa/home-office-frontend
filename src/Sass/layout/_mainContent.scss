@@ -1,5 +1,5 @@
 #main_content_container {
-  @include fixedPositionSetup(10%, 6%, 90%, 94%);
+  @include fixedPositionSetup(0%, 6%, 100%, 94%);
   overflow: auto;
   &::-webkit-scrollbar {
     width: 10px;
