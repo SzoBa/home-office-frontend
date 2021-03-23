@@ -1,4 +1,6 @@
 import React from "react";
+import UseGetData from "../../hooks/UseGet";
+import * as ENV from "../files/ENV.json";
 
 export default function MainPage() {
   const geo = navigator.geolocation;
@@ -7,6 +9,10 @@ export default function MainPage() {
       "Lat: " + pos.coords.latitude + " - Long: " + pos.coords.longitude
     );
   });
+  const weather = UseGetData(ENV.actualLocalWeather, "token")[1];
+
+  //`?longitude=${}&latitude=${}`
+  console.log(weather);
 
   return (
     <div id="main_page_container">
