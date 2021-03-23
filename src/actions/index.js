@@ -9,3 +9,8 @@ export const logout = (payload) => ({
   type: actionTypes.LOGOUT,
   payload: payload,
 });
+
+export const setLocation = (payload) => ({
+  type: actionTypes.SET_LOCATION,
+  payload: payload,
+});
