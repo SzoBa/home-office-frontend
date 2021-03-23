@@ -11,6 +11,7 @@ const Header = (props) => {
       <Link to="/email">Weather forecast</Link>
       <Link to="/email">News</Link>
       <Link to="/email">Traffic info</Link>
+      <Link to="/email">Currency info</Link>
       <Link to="/email">Emails</Link>
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
