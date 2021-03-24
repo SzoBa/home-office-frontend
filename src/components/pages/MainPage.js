@@ -45,9 +45,11 @@ export default function MainPage() {
   }, [locationData]);
 
   useEffect(() => {
-    const actualTime = new Date();
-
-    dispatch(setBackground({ backgroundImage: "afternoon_rain.jpg" }));
+    if (actualWeather.sys.sunrise) {
+      const timeString = compareTimes();
+      console.log(timeString);
+      dispatch(setBackground({ backgroundImage: "afternoon_rain.jpg" }));
+    }
   }, [actualWeather]);
 
   console.log(actualWeather);
@@ -117,4 +119,19 @@ export default function MainPage() {
       )}
     </div>
   );
+
+  function compareTimes() {
+    const actualDate = new Date();
+    const sunriseDate = new Date(actualWeather.sys.sunrise * 1000);
+    const sunsetDate = new Date(actualWeather.sys.sunset * 1000);
+    return actualDate < sunriseDate
+      ? "night"
+      : actualDate - sunriseDate < (sunsetDate - sunriseDate) / 4
+      ? "morning"
+      : actualDate - sunriseDate < ((sunsetDate - sunriseDate) * 3) / 4
+      ? "midday"
+      : actualDate - sunriseDate < ((sunsetDate - sunriseDate) * 5) / 4
+      ? "afternoon"
+      : "night";
+  }
 }
