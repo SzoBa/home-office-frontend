@@ -11,10 +11,20 @@ import Navbar from "../components/layout/Navbar";
 // import Sidebar from "../components/layout/Sidebar";
 import PrivateRoute from "./PrivateRoute";
 import RegistrationPage from "../components/pages/RegistrationPage";
+import picture from "../components/images/weather/midday_sun.jpg";
 
 export default function MainContainer() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${picture})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <Header />
       <Navbar />
       {/* <Sidebar /> */}
