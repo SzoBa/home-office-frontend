@@ -14,3 +14,13 @@ export const setLocation = (payload) => ({
   type: actionTypes.SET_LOCATION,
   payload: payload,
 });
+
+export const setBackground = (payload) => ({
+  type: actionTypes.SET_BACKGROUND,
+  payload: payload,
+});
+
+export const setActualWeather = (payload) => ({
+  type: actionTypes.SET_ACTUAL_WEATHER,
+  payload: payload,
+});
