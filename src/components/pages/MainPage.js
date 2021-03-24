@@ -34,6 +34,35 @@ export default function MainPage() {
           <h4>Weather data</h4>
           <p>Location: {weather.name}</p>
           <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+          <p>
+            Current time:{" "}
+            {new Date().toLocaleTimeString(navigator.language, {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </p>
+
+          <p>
+            Sunrise:{" "}
+            {new Date(weather.sys.sunrise * 1000).toLocaleTimeString(
+              navigator.language,
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            )}
+          </p>
+          <p>
+            Sunset:{" "}
+            {new Date(weather.sys.sunset * 1000).toLocaleTimeString(
+              navigator.language,
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            )}
+          </p>
+
           <p>Temperature: {weather.main.temp} C°</p>
           <p>Feels like: {weather.main.feels_like} C°</p>
           <p>Max temp: {weather.main.temp_max} C°</p>
