@@ -45,10 +45,12 @@ export default function MainPage() {
   }, [locationData]);
 
   useEffect(() => {
-    if (actualWeather.sys.sunrise) {
+    if (typeof actualWeather.sys !== "undefined") {
       const timeString = compareTimes();
-      console.log(timeString);
-      dispatch(setBackground({ backgroundImage: "afternoon_rain.jpg" }));
+      const weatherString = compareWeatherParams();
+      dispatch(
+        setBackground({ backgroundImage: `${timeString}_${weatherString}.jpg` })
+      );
     }
   }, [actualWeather]);
 
@@ -99,6 +101,7 @@ export default function MainPage() {
           {actualWeather.rain && (
             <p>{actualWeather.rain["1h"]} mm / last hour</p>
           )}
+          <p>Visibility: {actualWeather.visibility / 1000} km</p>
           <p>Pressure: {actualWeather.main.pressure} hPa</p>
           <p>Wind:</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;Degree: {actualWeather.wind.deg}°</p>
@@ -130,8 +133,19 @@ export default function MainPage() {
       ? "morning"
       : actualDate - sunriseDate < ((sunsetDate - sunriseDate) * 3) / 4
       ? "midday"
-      : actualDate - sunriseDate < ((sunsetDate - sunriseDate) * 5) / 4
+      : actualDate - sunriseDate < sunsetDate - sunriseDate
       ? "afternoon"
       : "night";
+  }
+
+  function compareWeatherParams() {
+    const weatherData = actualWeather.weather[0];
+    return weatherData.main === "Thunderstorm"
+      ? "storm"
+      : weatherData.main === "Rain"
+      ? "rain"
+      : weatherData.main === "Clear"
+      ? "sun"
+      : "clouds";
   }
 }

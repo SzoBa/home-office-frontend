@@ -17,6 +17,7 @@ import morning_sun from "./weather/morning_sun.jpg";
 import night_clouds from "./weather/night_clouds.jpg";
 import night_rain from "./weather/night_rain.jpg";
 import night_storm from "./weather/night_storm.jpg";
+import night_sun from "./weather/night_sun.jpg";
 export {
   afternoon_clouds,
   afternoon_rain,
@@ -34,4 +35,5 @@ export {
   night_clouds,
   night_rain,
   night_storm,
+  night_sun,
 };
