@@ -1,11 +1,16 @@
-import React from "react";
-import UseGetData from "../../hooks/UseGet";
+import React, { useEffect } from "react";
 import * as ENV from "../files/ENV.json";
 import { useSelector, useDispatch } from "react-redux";
-import { setLocation } from "../../actions/index";
+import {
+  setLocation,
+  setBackground,
+  setActualWeather,
+} from "../../actions/index";
+import axios from "axios";
 
 export default function MainPage() {
   const locationData = useSelector((state) => state.location);
+  const actualWeather = useSelector((state) => state.actualWeather);
   const dispatch = useDispatch();
 
   const geo = navigator.geolocation;
@@ -19,20 +24,40 @@ export default function MainPage() {
       );
     }
   });
-  const weather = UseGetData(
-    ENV.actualLocalWeather +
-      `?longitude=${locationData.longitude}&latitude=${locationData.latitude}`,
-    "token"
-  )[1];
 
-  console.log(weather);
+  useEffect(() => {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json, text/plain, */*",
+      },
+      url:
+        ENV.actualLocalWeather +
+        `?longitude=${locationData.longitude}&latitude=${locationData.latitude}`,
+    };
+    const getData = async () => {
+      const response = await axios(options);
+      dispatch(setActualWeather(response.data));
+    };
+    if (locationData.longitude !== 0 && locationData.longitude !== 0) {
+      getData().catch((error) => {});
+    }
+  }, [locationData]);
+
+  useEffect(() => {
+    const actualTime = new Date();
+
+    dispatch(setBackground({ backgroundImage: "afternoon_rain.jpg" }));
+  }, [actualWeather]);
+
+  console.log(actualWeather);
 
   return (
-    <div id="main_page_container">
-      {weather.name ? (
+    <div id="main_page_container" style={{ color: "white" }}>
+      {actualWeather.name ? (
         <div>
           <h4>Weather data</h4>
-          <p>Location: {weather.name}</p>
+          <p>Location: {actualWeather.name}</p>
           <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
           <p>
             Current time:{" "}
@@ -44,7 +69,7 @@ export default function MainPage() {
 
           <p>
             Sunrise:{" "}
-            {new Date(weather.sys.sunrise * 1000).toLocaleTimeString(
+            {new Date(actualWeather.sys.sunrise * 1000).toLocaleTimeString(
               navigator.language,
               {
                 hour: "2-digit",
@@ -54,7 +79,7 @@ export default function MainPage() {
           </p>
           <p>
             Sunset:{" "}
-            {new Date(weather.sys.sunset * 1000).toLocaleTimeString(
+            {new Date(actualWeather.sys.sunset * 1000).toLocaleTimeString(
               navigator.language,
               {
                 hour: "2-digit",
@@ -63,22 +88,24 @@ export default function MainPage() {
             )}
           </p>
 
-          <p>Temperature: {weather.main.temp} C°</p>
-          <p>Feels like: {weather.main.feels_like} C°</p>
-          <p>Max temp: {weather.main.temp_max} C°</p>
-          <p>Min temp: {weather.main.temp_min} C°</p>
-          <p>Cloudiness: {weather.clouds.all} %</p>
-          <p>Humidity: {weather.main.humidity} %</p>
-          {weather.rain && <p>{weather.rain["1h"]} mm / last hour</p>}
-          <p>Pressure: {weather.main.pressure} hPa</p>
+          <p>Temperature: {actualWeather.main.temp} C°</p>
+          <p>Feels like: {actualWeather.main.feels_like} C°</p>
+          <p>Max temp: {actualWeather.main.temp_max} C°</p>
+          <p>Min temp: {actualWeather.main.temp_min} C°</p>
+          <p>Cloudiness: {actualWeather.clouds.all} %</p>
+          <p>Humidity: {actualWeather.main.humidity} %</p>
+          {actualWeather.rain && (
+            <p>{actualWeather.rain["1h"]} mm / last hour</p>
+          )}
+          <p>Pressure: {actualWeather.main.pressure} hPa</p>
           <p>Wind:</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;Degree: {weather.wind.deg}°</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;Degree: {actualWeather.wind.deg}°</p>
           <p>
             &nbsp;&nbsp;&nbsp;&nbsp;Speed:{" "}
-            {(weather.wind.speed * 3.6).toFixed(0)} km/h
+            {(actualWeather.wind.speed * 3.6).toFixed(0)} km/h
           </p>
-          <p>Country code: {weather.sys.country}</p>
-          {weather.weather.map((weatherData, index) => (
+          <p>Country code: {actualWeather.sys.country}</p>
+          {actualWeather.weather.map((weatherData, index) => (
             <p key={index}>
               General: {weatherData.main} - Description:{" "}
               {weatherData.description}
