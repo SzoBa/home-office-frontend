@@ -54,8 +54,6 @@ export default function MainPage() {
     }
   }, [actualWeather]);
 
-  console.log(actualWeather);
-
   return (
     <div id="main_page_container" style={{ color: "white" }}>
       {actualWeather.name ? (
