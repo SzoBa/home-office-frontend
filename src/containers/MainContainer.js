@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MainPage from "../components/pages/MainPage";
 import LoginGooglePage from "../components/pages/LoginGooglePage";
 import LoginGithubPage from "../components/pages/LoginGithubPage";
@@ -11,13 +12,16 @@ import Navbar from "../components/layout/Navbar";
 // import Sidebar from "../components/layout/Sidebar";
 import PrivateRoute from "./PrivateRoute";
 import RegistrationPage from "../components/pages/RegistrationPage";
-import picture from "../components/images/weather/midday_sun.jpg";
+import * as weatherImages from "../components/images/weatherIndex";
 
 export default function MainContainer() {
+  const background = useSelector((state) => state.background);
+  const backgroundImage = getBackgroundImage();
+
   return (
     <div
       style={{
-        backgroundImage: `url(${picture})`,
+        backgroundImage: `url(${backgroundImage})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -40,4 +44,11 @@ export default function MainContainer() {
       </div>
     </div>
   );
+
+  function getBackgroundImage() {
+    const imageName = background.backgroundImage
+      ? background.backgroundImage.replace(/\.[^/.]+$/, "")
+      : null;
+    return imageName ? weatherImages[imageName] : "freeze";
+  }
 }
