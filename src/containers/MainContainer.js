@@ -35,7 +35,7 @@ export default function MainContainer() {
       <div id="main_content_container">
         <Route exact path="/" component={MainPage} />
         <Route path="/registration" component={RegistrationPage} />
-        <Route exact path="/login" component={LoginPage} />
+        <Route path="/login" component={LoginPage} />
         <Route path="/auth/google" component={LoginGooglePage} />
         <Route path="/auth/github" component={LoginGithubPage} />
         <PrivateRoute path="/logout" component={MainPage} />
