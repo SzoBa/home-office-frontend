@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import UsePostData from "../../hooks/UsePostData";
 import * as ENV from "../files/ENV.json";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/index";
 
 export default function LoginPage() {
@@ -13,6 +13,9 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
+  const locationData = useSelector((state) => state.location);
+  const actualWeather = useSelector((state) => state.actualWeather);
+  const background = useSelector((state) => state.background);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -60,6 +63,11 @@ export default function LoginPage() {
     const getData = async () => {
       const response = await axios(options);
       setGithubLoginUrl(response.data.url);
+      document.cookie = `data={"locationData":${JSON.stringify(
+        locationData
+      )},"actualWeather":${JSON.stringify(
+        actualWeather
+      )},"background":${JSON.stringify(background)}};`;
     };
     getData().catch((error) => {
       console.log(error.response.data);
