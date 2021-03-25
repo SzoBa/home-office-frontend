@@ -55,9 +55,9 @@ export default function MainPage() {
   }, [actualWeather]);
 
   return (
-    <div id="main_page_container" style={{ color: "white" }}>
+    <div id="main_page_container">
       {actualWeather.name ? (
-        <div>
+        <div id="content_div_main">
           <h4>Weather data</h4>
           <p>Location: {actualWeather.name}</p>
           <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
