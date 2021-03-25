@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UseGetData from "../../hooks/UseGet";
+import useSortedData from "../../hooks/UseSortedData";
 import * as ENV from "../files/ENV.json";
 import axios from "axios";
 
@@ -18,7 +19,6 @@ export default function EmailPage() {
   const history = useHistory();
   const user = useSelector((state) => state.login);
   const [messageDetails, setMessageDetails] = useState([]);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
 
   //TODO: remove the unread parameter
   const [isLoading, mailsData] = UseGetData(
@@ -51,33 +51,44 @@ export default function EmailPage() {
     }
   }, [isLoading]);
 
-  const sortByField = (key) => {
-    let direction =
-      sortConfig.key === key && sortConfig.direction === DESCENDING
-        ? ASCENDING
-        : DESCENDING;
-    setSortConfig({ key: key, direction: direction });
-  };
+  const [sortedMessages, sortByField, sortConfig] = useSortedData(
+    messageDetails,
+    orderDetailsByKey
+  );
 
-  const sortedMessages = useMemo(() => {
-    let sortedMessageDetails = [...messageDetails];
-    if (sortConfig.key !== null) {
-      sortedMessageDetails.sort(
-        orderDetailsByKey(sortConfig.key, sortConfig.direction)
-      );
-    }
-    return sortedMessageDetails;
-  }, [messageDetails, sortConfig]);
+  const showSortedBy = (fieldName) => {
+    return sortConfig.key === fieldName ? sortConfig.direction : "";
+  };
 
   return (
     <div className="email_container">
       <table>
         <thead>
           <tr>
-            <th onClick={() => sortByField(SUBJECT)}>{SUBJECT}</th>
-            <th onClick={() => sortByField(SNIPPET)}>Message</th>
-            <th onClick={() => sortByField(FROM)}>Author</th>
-            <th onClick={() => sortByField(DATE)}>Created at</th>
+            <th
+              onClick={() => sortByField(SUBJECT)}
+              className={showSortedBy(SUBJECT)}
+            >
+              {SUBJECT}
+            </th>
+            <th
+              onClick={() => sortByField(SNIPPET)}
+              className={showSortedBy(SNIPPET)}
+            >
+              Message
+            </th>
+            <th
+              onClick={() => sortByField(FROM)}
+              className={showSortedBy(FROM)}
+            >
+              Author
+            </th>
+            <th
+              onClick={() => sortByField(DATE)}
+              className={showSortedBy(DATE)}
+            >
+              Created at
+            </th>
             <th>Delete</th>
             <th>Mark as unread</th>
           </tr>
@@ -91,9 +102,22 @@ export default function EmailPage() {
               }}
             >
               <td>{getDataFromMessage(message, SUBJECT)}</td>
-              <td>{message[SNIPPET]}...</td>
+              <td
+                dangerouslySetInnerHTML={{ __html: message[SNIPPET] + "..." }}
+              ></td>
               <td>{getDataFromMessage(message, FROM)}</td>
-              <td>{getDataFromMessage(message, DATE)}</td>
+              <td>
+                {new Date(getDataFromMessage(message, DATE)).toLocaleTimeString(
+                  navigator.language,
+                  {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
+                )}
+              </td>
               <td>Delete icon</td>
               <td>Unread icon</td>
             </tr>
