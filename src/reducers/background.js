@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  backgroundImage: null,
+  backgroundImage: "freeze.jpg",
 };
 
 const backgroundReducer = (state = initialState, action) => {
