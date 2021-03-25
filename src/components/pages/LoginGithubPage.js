@@ -3,7 +3,12 @@ import axios from "axios";
 import * as ENV from "../files/ENV.json";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../actions/index";
+import {
+  login,
+  setBackground,
+  setLocation,
+  setActualWeather,
+} from "../../actions/index";
 
 const LoginGithubPage = (props) => {
   const [data, setData] = useState([]);
@@ -18,6 +23,10 @@ const LoginGithubPage = (props) => {
       url: ENV.githubLoginCallback + props.location.search,
     };
     const getData = async () => {
+      const retrievedData = getCookie("data");
+      dispatch(setLocation(retrievedData.locationData));
+      dispatch(setActualWeather(retrievedData.actualWeather));
+      dispatch(setBackground(retrievedData.background));
       const response = await axios(options);
       setData(response.data);
       dispatch(login(response.data));
@@ -47,6 +56,20 @@ const LoginGithubPage = (props) => {
       )}
     </div>
   );
+
+  function getCookie(name) {
+    const cookieName = name + "=";
+    const cookieArray = document.cookie.split(";");
+    for (let i = 1; i < cookieArray.length; i++) {
+      const trimmedCookie = cookieArray[i].trim();
+      if (trimmedCookie.indexOf(cookieName) === 0) {
+        document.cookie = `data={};expires=${new Date(1)};`;
+        return JSON.parse(
+          trimmedCookie.substring(cookieName.length, trimmedCookie.length)
+        );
+      }
+    }
+  }
 };
 
 export default LoginGithubPage;
