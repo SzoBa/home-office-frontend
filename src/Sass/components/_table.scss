@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  user-select: none;
+}
+
+thead th {
+  text-align: center;
+  cursor: pointer;
+}
+
+// tbody tr:nth-child(even) {
+//   background-color: #f7cfcf;
+//   &:hover {
+//     background-color: #eee;
+//   }
+// }
