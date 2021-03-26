@@ -18,12 +18,13 @@ $colors: (
   inputBorderColor: #cbcbcb,
   inputShadowColor: rgba(0, 0, 0, 0.18),
   emailTableBorder: #3a3a3a,
-  emailTableRowBackground: white,
+  emailTableRowBackground: rgba(255, 255, 255, 0.6),
   emailTableThLetterAsc: black,
   emailTableThLetterDesc: black,
   emailTableThBackground: #6c7ae0,
   emailTableTbodyOnHover: #a8b0f0,
   emailTableTbodyBorder: #9ea8f0,
+  emailTableThFontColor: white,
   white: white,
   red: red,
   scrollbarThumb: lightgrey,
@@ -36,9 +37,6 @@ $sideAutoMargin: 0 auto;
 $desktop: 900px;
 $socialButtonSpanSize: 42px;
 
-// ::after {
-//     content: hello;
-// }
 //ul -> list-style-type: none
 //margin: max(40px) - no Sass specific :D
 //height: fit-content???
