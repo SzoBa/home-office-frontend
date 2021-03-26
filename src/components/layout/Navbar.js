@@ -7,7 +7,7 @@ const Navbar = (props) => {
       id="navbar_container_open"
       className={useLocation().pathname === "/email" ? "" : "hide"}
     >
-      <p>Email related</p>
+      <div>Email options</div>
     </div>
   );
 };
