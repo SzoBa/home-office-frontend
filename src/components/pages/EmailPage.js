@@ -53,7 +53,11 @@ export default function EmailPage() {
 
   const [sortedMessages, sortByField, sortConfig] = useSortedData(
     messageDetails,
-    orderDetailsByKey
+    orderDetailsByKey,
+    {
+      key: DATE,
+      direction: DESCENDING,
+    }
   );
 
   const showSortedBy = (fieldName) => {
@@ -62,7 +66,7 @@ export default function EmailPage() {
 
   return (
     <div className="email_container">
-      <table>
+      <table className="table_style">
         <thead>
           <tr>
             <th
@@ -118,8 +122,8 @@ export default function EmailPage() {
                   }
                 )}
               </td>
-              <td>Delete icon</td>
-              <td>Unread icon</td>
+              <td>Del icon</td>
+              <td>Unr icon</td>
             </tr>
           ))}
         </tbody>
