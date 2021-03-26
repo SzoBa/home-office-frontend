@@ -1,3 +1,62 @@
 .email_container {
-  @include contentContainerSetup();
+  @include contentContainerSetup(94%, 0 1% 1% 11%);
+}
+
+.table_style {
+  table-layout: auto;
+  thead th:first-child {
+    border-radius: $borderRadius * 3 0 0 0;
+  }
+
+  thead th:last-child {
+    border-radius: 0 $borderRadius * 3 0 0;
+  }
+
+  tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 $borderRadius * 3;
+  }
+
+  tbody tr:last-child td:last-child {
+    border-radius: 0 0 $borderRadius * 3 0;
+  }
+
+  .asc {
+    color: color(emailTableThLetterAsc);
+  }
+
+  .desc {
+    color: color(emailTableThLetterDesc);
+  }
+
+  thead th {
+    padding: $padding;
+    background-color: color(emailTableThBackground);
+    color: color(white);
+  }
+
+  thead th.asc::after {
+    content: "↓";
+    display: inline-block;
+    margin-left: 1em;
+  }
+
+  thead th.desc::after {
+    content: "↑";
+    display: inline-block;
+    margin-left: 1em;
+  }
+
+  tbody tr {
+    background-color: color(emailTableRowBackground);
+    &:hover {
+      background-color: color(emailTableTbodyOnHover);
+    }
+  }
+
+  tbody td {
+    height: $padding * 15;
+    text-align: left;
+    padding: $padding;
+    border: 1px solid emailTableTbodyBorder;
+  }
 }
