@@ -2,9 +2,11 @@
   @include flexSetup(left, center, column);
   @include fixedPositionSetup(0, 6%, 10%, 94%);
   min-height: 89%;
-
+  background-color: color(white);
+  opacity: 0.7;
   z-index: 999;
   border: 1px solid black;
+  border-radius: 0 $borderRadius * 3 0 0;
   @media screen and (max-width: 1520px) {
     font-size: 0.95em;
   }
