@@ -16,7 +16,9 @@ const useSortedData = (
       sortedData.sort(sortingFunction(sortConfig.key, sortConfig.direction));
     }
     return sortedData;
+    /* eslint-disable */
   }, [data, sortConfig]);
+  /* eslint-enable */
 
   const sortByField = (key) => {
     let direction =

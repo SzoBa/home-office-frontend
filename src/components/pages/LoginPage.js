@@ -72,7 +72,9 @@ export default function LoginPage() {
     getData().catch((error) => {
       console.log(error.response.data);
     });
+    /* eslint-disable */
   }, []);
+  /* eslint-enable */
 
   return (
     <div className="login_container">
