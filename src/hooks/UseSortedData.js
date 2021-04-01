@@ -9,7 +9,6 @@ const useSortedData = (
   config = { key: null, direction: null }
 ) => {
   const [sortConfig, setSortConfig] = useState(config);
-
   const sortedData = useMemo(() => {
     let sortedData = [...data];
     if (sortConfig.key !== null) {
@@ -27,7 +26,6 @@ const useSortedData = (
         : DESCENDING;
     setSortConfig({ key: key, direction: direction });
   };
-
   return [sortedData, sortByField, sortConfig];
 };
 
