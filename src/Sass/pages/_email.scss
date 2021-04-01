@@ -28,6 +28,7 @@
   }
 
   thead th {
+    min-height: 9%;
     padding: $padding;
     background-color: color(emailTableThBackground);
     color: color(emailTableThFontColor);
