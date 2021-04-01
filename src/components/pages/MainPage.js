@@ -42,7 +42,9 @@ export default function MainPage() {
     if (locationData.longitude !== 0 && locationData.longitude !== 0) {
       getData().catch((error) => {});
     }
+    /* eslint-disable */
   }, [locationData]);
+  /* eslint-enable */
 
   useEffect(() => {
     if (typeof actualWeather.sys !== "undefined") {
@@ -52,8 +54,9 @@ export default function MainPage() {
         setBackground({ backgroundImage: `${timeString}_${weatherString}.jpg` })
       );
     }
+    /* eslint-disable */
   }, [actualWeather]);
-
+  /* eslint-enable */
   return (
     <div id="main_page_container">
       {actualWeather.name ? (
