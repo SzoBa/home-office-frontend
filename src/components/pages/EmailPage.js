@@ -15,10 +15,10 @@ const STRING = "string";
 
 export default function EmailPage() {
   const user = useSelector((state) => state.login);
-  const [messageDetails, setMessageDetails] = useState([]);
-  //TODO: remove the unread parameter
-  const [urlOptions, setUrlOptions] = useState("?q=in:inbox+is:unread");
+  const urlOptions = useSelector((state) => state.urlOption);
 
+  const [messageDetails, setMessageDetails] = useState([]);
+  console.log(messageDetails);
   UseGetEmailData(
     ENV.mailsWithOptions + urlOptions,
     user.sanctum_token,
@@ -38,21 +38,8 @@ export default function EmailPage() {
     return sortConfig.key === fieldName ? sortConfig.direction : "";
   };
 
-  const handleTest1 = () => {
-    setUrlOptions("?q=in:inbox+is:read");
-  };
-  const handleTest2 = () => {
-    setUrlOptions("?q=in:sent");
-  };
-  const handleTest3 = () => {
-    setUrlOptions("?q=in:inbox");
-  };
-
   return (
     <div className="email_container">
-      <button onClick={handleTest1}>Test1</button>
-      <button onClick={handleTest2}>Test2</button>
-      <button onClick={handleTest3}>Test3</button>
       <table className="table_style">
         <thead>
           <tr>
