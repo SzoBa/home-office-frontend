@@ -2,9 +2,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   user-select: none;
+  overflow: hidden;
 }
 
 thead th {
+  position: sticky;
+  top: 0;
   text-align: center;
   cursor: pointer;
 }
