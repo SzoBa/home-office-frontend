@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import UseGetData from "../../hooks/UseGet";
+import UseGetEmailData from "../../hooks/UseGetEmailData";
 import useSortedData from "../../hooks/UseSortedData";
 import * as ENV from "../files/ENV.json";
-import axios from "axios";
 
 const UNREAD = "UNREAD";
 const DESCENDING = "desc";
-const ASCENDING = "asc";
+// const ASCENDING = "asc";
 const DATE = "Date";
 const SUBJECT = "Subject";
 const FROM = "From";
@@ -16,40 +14,16 @@ const SNIPPET = "snippet";
 const STRING = "string";
 
 export default function EmailPage() {
-  const history = useHistory();
   const user = useSelector((state) => state.login);
   const [messageDetails, setMessageDetails] = useState([]);
-
   //TODO: remove the unread parameter
-  const [isLoading, mailsData] = UseGetData(
-    ENV.mailsWithOptions + "?q=in:inbox+is:unread",
-    user.sanctum_token
+  const [urlOptions, setUrlOptions] = useState("?q=in:inbox+is:unread");
+
+  UseGetEmailData(
+    ENV.mailsWithOptions + urlOptions,
+    user.sanctum_token,
+    setMessageDetails
   );
-
-  useEffect(() => {
-    if (!isLoading && messageDetails.length < mailsData.messages.length) {
-      mailsData.messages.forEach((mail) => {
-        const options = {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json, text/plain, */*",
-            Authorization: "Bearer " + user.sanctum_token,
-          },
-          url: ENV.mails + `/${mail.id}`,
-        };
-
-        const getData = async () => {
-          const response = await axios(options);
-          setMessageDetails((old) => [...old, response.data]);
-        };
-        getData().catch((error) => {
-          if (error.response.status === 422) {
-            return history.push("/login");
-          }
-        });
-      });
-    }
-  }, [isLoading]);
 
   const [sortedMessages, sortByField, sortConfig] = useSortedData(
     messageDetails,
@@ -64,8 +38,21 @@ export default function EmailPage() {
     return sortConfig.key === fieldName ? sortConfig.direction : "";
   };
 
+  const handleTest1 = () => {
+    setUrlOptions("?q=in:inbox+is:read");
+  };
+  const handleTest2 = () => {
+    setUrlOptions("?q=in:sent");
+  };
+  const handleTest3 = () => {
+    setUrlOptions("?q=in:inbox");
+  };
+
   return (
     <div className="email_container">
+      <button onClick={handleTest1}>Test1</button>
+      <button onClick={handleTest2}>Test2</button>
+      <button onClick={handleTest3}>Test3</button>
       <table className="table_style">
         <thead>
           <tr>
@@ -105,11 +92,13 @@ export default function EmailPage() {
                 fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
               }}
             >
-              <td>{getDataFromMessage(message, SUBJECT)}</td>
+              <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
               <td
-                dangerouslySetInnerHTML={{ __html: message[SNIPPET] + "..." }}
+                dangerouslySetInnerHTML={{
+                  __html: setMaxChars(message[SNIPPET] + "..."),
+                }}
               ></td>
-              <td>{getDataFromMessage(message, FROM)}</td>
+              <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
               <td>
                 {new Date(getDataFromMessage(message, DATE)).toLocaleTimeString(
                   navigator.language,
@@ -135,6 +124,16 @@ export default function EmailPage() {
     return message.payload.headers.filter(function (subject) {
       return subject.name === dataName;
     })[0].value;
+  }
+
+  function setMaxChars(data, maxChars = 25) {
+    data = data.split(" ");
+    data = data.map((word) => {
+      return maxChars < word.length
+        ? word.substring(0, maxChars - 2) + "..."
+        : word;
+    });
+    return data.join(" ");
   }
 
   function orderDetailsByKey(key, order = DESCENDING) {
