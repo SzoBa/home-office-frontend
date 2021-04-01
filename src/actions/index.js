@@ -24,3 +24,8 @@ export const setActualWeather = (payload) => ({
   type: actionTypes.SET_ACTUAL_WEATHER,
   payload: payload,
 });
+
+export const setUrlOptions = (payload) => ({
+  type: actionTypes.SET_URL_OPTION,
+  payload: payload,
+});

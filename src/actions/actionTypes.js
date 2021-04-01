@@ -6,3 +6,5 @@ export const SET_LOCATION = "setLocation";
 export const SET_BACKGROUND = "setBackground";
 
 export const SET_ACTUAL_WEATHER = "setActualWeather";
+
+export const SET_URL_OPTION = "setUrlOption";
