@@ -29,3 +29,13 @@ export const setUrlOptions = (payload) => ({
   type: actionTypes.SET_URL_OPTION,
   payload: payload,
 });
+
+export const writeEmail = (payload) => ({
+  type: actionTypes.WRITE_EMAIL,
+  payload: payload,
+});
+
+export const readEmail = (payload) => ({
+  type: actionTypes.READ_EMAIL,
+  payload: payload,
+});
