@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import * as ENV from "../components/files/ENV.json";
 
-const useGetEmailData = (setFetchedData, setErrorMessage) => {
+const useGetEmailData = (setFetchedData, setLoading, setErrorMessage) => {
   const user = useSelector((state) => state.login);
   const urlOptions = useSelector((state) => state.urlOption);
   const history = useHistory();
@@ -24,8 +24,10 @@ const useGetEmailData = (setFetchedData, setErrorMessage) => {
       const response = await axios(options);
       setFetchedData(response.data);
       setIsLoading(false);
+      setLoading(false);
     };
     if (!writeReadEmail) {
+      setLoading(true);
       getData().catch((error) => {
         if (error.response.status === 422) {
           return history.push("/login");
@@ -40,6 +42,7 @@ const useGetEmailData = (setFetchedData, setErrorMessage) => {
     user.sanctum_token,
     setFetchedData,
     history,
+    setLoading,
   ]);
 };
 

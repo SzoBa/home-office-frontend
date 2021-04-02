@@ -14,8 +14,9 @@ import {
 
 const EmailTable = (props) => {
   const [messageDetails, setMessageDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  UseGetEmailData(setMessageDetails);
+  UseGetEmailData(setMessageDetails, setLoading);
 
   const [sortedMessages, sortByField, sortConfig] = useSortedData(
     messageDetails,
@@ -56,38 +57,42 @@ const EmailTable = (props) => {
           <th>Mark as unread</th>
         </tr>
       </thead>
-      <tbody>
-        {sortedMessages.map((message) => (
-          <tr
-            key={message.id}
-            style={{
-              fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
-            }}
-          >
-            <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
-            <td
-              dangerouslySetInnerHTML={{
-                __html: setMaxChars(message[SNIPPET] + "..."),
+      {loading ? (
+        <div style={{ color: "white" }}>Loading</div>
+      ) : (
+        <tbody>
+          {sortedMessages.map((message) => (
+            <tr
+              key={message.id}
+              style={{
+                fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
               }}
-            ></td>
-            <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
-            <td>
-              {new Date(getDataFromMessage(message, DATE)).toLocaleTimeString(
-                navigator.language,
-                {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                }
-              )}
-            </td>
-            <td>Del icon</td>
-            <td>Unr icon</td>
-          </tr>
-        ))}
-      </tbody>
+            >
+              <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
+              <td
+                dangerouslySetInnerHTML={{
+                  __html: setMaxChars(message[SNIPPET] + "..."),
+                }}
+              ></td>
+              <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
+              <td>
+                {new Date(getDataFromMessage(message, DATE)).toLocaleTimeString(
+                  navigator.language,
+                  {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
+                )}
+              </td>
+              <td>Del icon</td>
+              <td>Unr icon</td>
+            </tr>
+          ))}
+        </tbody>
+      )}
     </table>
   );
 
