@@ -1,7 +1,5 @@
 import { useMemo, useState } from "react";
-
-const DESCENDING = "desc";
-const ASCENDING = "asc";
+import { ASCENDING, DESCENDING } from "../containers/ConstContainer";
 
 const useSortedData = (
   data,
