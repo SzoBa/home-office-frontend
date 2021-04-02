@@ -46,15 +46,15 @@
   }
 
   div:not(:first-of-type) {
-    @include flexSetup(space-around, center, column);
-    top: 0;
-    height: 25%;
+    @include flexSetup(flex-start, center, column);
+    padding: $padding;
     button {
       background-color: white;
       border-radius: $borderRadius;
       padding: $padding;
-      min-width: 50px;
+      min-width: 75px;
       font-weight: bold;
+      margin: $padding;
     }
   }
 }

@@ -18,7 +18,6 @@ export default function EmailPage() {
   const urlOptions = useSelector((state) => state.urlOption);
 
   const [messageDetails, setMessageDetails] = useState([]);
-  console.log(messageDetails);
   UseGetEmailData(
     ENV.mailsWithOptions + urlOptions,
     user.sanctum_token,
