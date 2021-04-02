@@ -31,10 +31,18 @@ const Navbar = (props) => {
       <div>Email options</div>
       <div>
         <button onClick={handleEmailInbox}>Incoming</button>
+        <button onClick={handleEmailInbox}>Write</button>
         <button onClick={handleEmailSent}>Sent</button>
         <button onClick={handleEmailDraft}>Draft</button>
         <button onClick={handleEmailTrash}>Trash</button>
         <button onClick={handleEmailSpam}>Spam</button>
+      </div>
+      <div>
+        <button>All</button>
+        <button>Unread</button>
+      </div>
+      <div>
+        <button>Some labels</button>
       </div>
     </div>
   );
