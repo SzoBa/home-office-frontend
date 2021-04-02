@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import UseGetEmailData from "../../hooks/UseGetEmailData";
 import useSortedData from "../../hooks/UseSortedData";
-import * as ENV from "../files/ENV.json";
+
 import {
   DATE,
   DESCENDING,
@@ -14,15 +13,9 @@ import {
 } from "../../containers/ConstContainer";
 
 const EmailTable = (props) => {
-  const user = useSelector((state) => state.login);
-  const urlOptions = useSelector((state) => state.urlOption);
   const [messageDetails, setMessageDetails] = useState([]);
 
-  UseGetEmailData(
-    ENV.mailsWithOptions + urlOptions,
-    user.sanctum_token,
-    setMessageDetails
-  );
+  UseGetEmailData(setMessageDetails);
 
   const [sortedMessages, sortByField, sortConfig] = useSortedData(
     messageDetails,

@@ -1,30 +1,46 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
+import * as ENV from "../components/files/ENV.json";
 
-const useGetEmailData = (url, token, setFetchedData, setErrorMessage) => {
+const useGetEmailData = (setFetchedData, setErrorMessage) => {
+  const user = useSelector((state) => state.login);
+  const urlOptions = useSelector((state) => state.urlOption);
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
+  const writeReadEmail = useSelector((state) => state.writeReadEmail);
+
   useEffect(() => {
     const options = {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json, text/plain, */*",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + user.sanctum_token,
       },
-      url: url,
+      url: ENV.mailsWithOptions + urlOptions,
     };
     const getData = async () => {
       const response = await axios(options);
       setFetchedData(response.data);
       setIsLoading(false);
     };
-    getData().catch((error) => {
-      if (error.response.status === 422) {
-        return history.push("/login");
-      }
-    });
-  }, [url, token, isLoading, setFetchedData, history, setErrorMessage]);
+    if (!writeReadEmail) {
+      getData().catch((error) => {
+        if (error.response.status === 422) {
+          return history.push("/login");
+        }
+      });
+    }
+  }, [
+    urlOptions,
+    isLoading,
+    setErrorMessage,
+    writeReadEmail,
+    user.sanctum_token,
+    setFetchedData,
+    history,
+  ]);
 };
 
 export default useGetEmailData;
