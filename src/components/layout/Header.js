@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <div id="headerContainer">
       {useLocation().pathname !== "/" ? <Link to="/">Back to main</Link> : ""}
-      <Link to="/email">Weather forecast</Link>
+      <Link to="/weather">Weather forecast</Link>
       <Link to="/email">News</Link>
       <Link to="/email">Traffic info</Link>
       <Link to="/email">Currency info</Link>
