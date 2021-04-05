@@ -60,3 +60,49 @@
     border: 1px solid emailTableTbodyBorder;
   }
 }
+
+.email_content_container {
+  @include contentDiv(600px, 100%);
+  opacity: 1;
+  background-color: transparent;
+  padding: 0;
+
+  > div:first-of-type {
+    width: 100%;
+    height: $emailPageHeaderHeights;
+    @include flexSetup(center, center, row);
+    font-weight: bold;
+    color: color(emailTableThFontColor);
+    background-color: color(emailTableThBackground);
+    border-radius: $borderRadius * 3 $borderRadius * 3 0 0;
+  }
+
+  > div:not(:first-of-type) {
+    width: 100%;
+    height: $emailPageHeaderHeights * 9;
+    @include flexSetup(flex-start, center, column);
+    padding: $padding;
+    background-color: color(emailTableRowBackground);
+    border-radius: 0 0 $borderRadius * 3 $borderRadius * 3;
+
+    button {
+      border-radius: $borderRadius;
+      padding: $padding;
+      min-width: 75px;
+      font-weight: bold;
+      margin: $padding;
+    }
+
+    > div:nth-child(1),
+    div:nth-child(2) {
+      width: 100%;
+      @include flexSetup(space-evenly, center, column);
+    }
+
+    > div:nth-child(3) {
+      width: $emailPageHeaderHeights * 15;
+      height: $emailPageHeaderHeights * 2;
+      background-color: color(white);
+    }
+  }
+}

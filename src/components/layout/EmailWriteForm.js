@@ -2,29 +2,30 @@ import React from "react";
 
 const EmailWriteForm = (props) => {
   return (
-    <div>
+    <div className="email_content_container">
+      <div>Compose mail</div>
       <div>
-        <h3>Compose mail</h3>
         <div>
-          <div>
-            <label>Send to user:</label>
-            <input type="email" id="address" name="address" />
-          </div>
+          <label>Send to user:</label>
+          <input type="email" id="address" name="address" />
         </div>
         <div>
           <label>Subject:</label>
           <input id="subject" type="text" name="subject" />
         </div>
         <div name="emailText">
+          Here will be the mailbox module
           {/* <MDEditor value={value} onChange={setValue} /> */}
           {/* <MDEditor.Markdown source={value} /> */}
         </div>
-        <button type="submit" name="save" id="save">
-          Save email
-        </button>
-        <button type="submit" name="send" id="send">
-          Send mail
-        </button>
+        <div>
+          <button type="submit" name="save" id="save">
+            Save email
+          </button>
+          <button type="submit" name="send" id="send">
+            Send mail
+          </button>
+        </div>
       </div>
     </div>
   );
