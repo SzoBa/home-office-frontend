@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import RegistrationPage from "../components/pages/RegistrationPage";
 import * as weatherImages from "../components/images/weatherIndex";
 import WeatherPage from "../components/pages/WeatherPage";
+import AboutContainer from "../containers/AboutContainer";
 
 export default function MainContainer() {
   const background = useSelector((state) => state.background);
@@ -40,6 +41,7 @@ export default function MainContainer() {
         <Route path="/auth/google" component={LoginGooglePage} />
         <Route path="/auth/github" component={LoginGithubPage} />
         <Route path="/weather" component={WeatherPage} />
+        <Route path="/about" component={AboutContainer} />
         <PrivateRoute path="/logout" component={MainPage} />
         <PrivateRoute path="/email" component={EmailPage} />
         <Footer />
