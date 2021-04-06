@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 export default function AboutContainer() {
   return (
-    <div>
+    <div className="full_width_container">
       <AboutContent />
       <Switch>
         <Route path="/about/impressum" component={Impressum} />

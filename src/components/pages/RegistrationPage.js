@@ -35,7 +35,7 @@ const RegistrationPage = (props) => {
   };
 
   return (
-    <div className="login_container">
+    <div className="full_width_container">
       <div id="content_div_login">
         <form method="post" onSubmit={handleSubmit}>
           <h2>Registration</h2>

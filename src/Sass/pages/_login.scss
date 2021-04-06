@@ -1,7 +1,3 @@
-.login_container {
-  @include contentContainerSetup();
-}
-
 #content_div_login {
   @include contentDiv(400px, 40%);
   @include desktop() {

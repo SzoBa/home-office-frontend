@@ -58,7 +58,7 @@ export default function MainPage() {
   }, [actualWeather]);
   /* eslint-enable */
   return (
-    <div id="main_page_container">
+    <div className="full_width_container">
       {actualWeather.name ? (
         <div id="content_div_main">
           <h4>Weather data</h4>

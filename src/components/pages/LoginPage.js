@@ -77,7 +77,7 @@ export default function LoginPage() {
   /* eslint-enable */
 
   return (
-    <div className="login_container">
+    <div className="full_width_container">
       <div id="content_div_login">
         <h2>Login</h2>
         <form method="post" onSubmit={handleSubmit}>
