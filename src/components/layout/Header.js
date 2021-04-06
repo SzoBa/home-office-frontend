@@ -9,9 +9,9 @@ const Header = (props) => {
     <div id="headerContainer">
       {useLocation().pathname !== "/" ? <Link to="/">Back to main</Link> : ""}
       <Link to="/weather">Weather forecast</Link>
-      <Link to="/email">News</Link>
-      <Link to="/email">Traffic info</Link>
-      <Link to="/email">Currency info</Link>
+      <Link to="/">News</Link>
+      <Link to="/">Traffic info</Link>
+      <Link to="/">Currency info</Link>
       <Link to="/email">Emails</Link>
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
