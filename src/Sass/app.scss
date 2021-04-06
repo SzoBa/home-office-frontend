@@ -2,6 +2,7 @@
 @import "abstracts/_variables";
 @import "abstracts/_functions";
 
+@import "core/_containers";
 @import "core/_reset";
 @import "core/_fonts";
 
@@ -22,3 +23,4 @@
 @import "pages/_login";
 @import "pages/_main";
 @import "pages/_registration";
+@import "pages/_weather";
