@@ -1,4 +1,7 @@
 $colors: (
+  anchorBasic: black,
+  anchorHover: white,
+  anchorBackgroundHover: black,
   button: blue,
   buttonOnHover: green,
   buttonDisabled: grey,
@@ -12,6 +15,7 @@ $colors: (
   socialButtonBorder: grey,
   socialButtonShadow: grey,
   socialButtonBackground: white,
+  contentDivBackground: rgba(255, 255, 255, 0.8),
   contentDivShadowOpLow: rgba(14, 41, 57, 0.12),
   contentDivShadowOpMax: rgba(14, 41, 57, 0.44),
   contentDivShadowOpMid: rgba(14, 41, 57, 0.15),
@@ -25,8 +29,6 @@ $colors: (
   emailTableTbodyOnHover: #a8b0f0,
   emailTableTbodyBorder: #9ea8f0,
   emailTableThFontColor: white,
-  white: white,
-  red: red,
   scrollbarThumb: lightgrey,
 );
 

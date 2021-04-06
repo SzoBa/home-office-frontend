@@ -15,6 +15,13 @@
 
   a {
     padding: $padding * 2;
+    &:hover {
+      background-color: transparent;
+
+      > div {
+        color: color(anchorBasic);
+      }
+    }
   }
 
   @include desktop($desktop * 1.8) {

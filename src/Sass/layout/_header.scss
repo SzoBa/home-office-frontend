@@ -3,7 +3,7 @@
   @include flexSetup(flex-end);
 
   a {
-    padding: 0 2% 0 0;
+    padding: 0 1% 0 1%;
   }
 
   div {
@@ -11,6 +11,6 @@
   }
 
   span {
-    color: color(white);
+    color: color(anchorBasic);
   }
 }

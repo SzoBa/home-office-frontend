@@ -39,8 +39,7 @@
   padding: $padding * 5 $padding * 5 $padding * 5;
   border-radius: $borderRadius * 4;
   margin: $sideAutoMargin;
-  background-color: color(white);
-  opacity: 0.8;
+  background-color: color(contentDivBackground);
 }
 
 // @include flexCenterExample(parameters)

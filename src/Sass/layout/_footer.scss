@@ -1,8 +1,13 @@
 #footerContainer {
-  // @include fixedPositionSetup(0, 95%, 100%, 5%);
-  @include flexSetup(space-between);
-  height: 5%;
-  padding-left: 10%;
+  @include flexSetup(space-evenly, center, row);
+  height: 6%;
+  background-color: color(emailTableRowBackground);
+  padding: 0 $padding * 3 0 $padding * 3;
+}
 
-  z-index: 999;
+.footerFull {
+}
+
+.footerEmail {
+  margin-left: 10%;
 }
