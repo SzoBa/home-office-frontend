@@ -37,7 +37,7 @@ const LoginGooglePage = (props) => {
   }, [props.location.search, dispatch]);
 
   return (
-    <div className="login_container">
+    <div className="full_width_container">
       {data.username ? (
         <div className="content_div_social">
           <form>
