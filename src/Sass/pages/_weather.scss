@@ -1,5 +1,5 @@
 #content_div_weather {
-  @include contentDiv(300px, 75%);
+  @include contentDiv(300px, 90%);
 
   > div:first-child {
     margin: $padding * 2;
@@ -17,7 +17,7 @@
 }
 .weather_card {
   height: 200px;
-  width: 120px;
+  width: 150px;
   box-shadow: 0 0 0 1px color(contentDivShadowOpLow),
     0 2px 5px color(contentDivShadowOpMax),
     inset 0 -1px 2px color(contentDivShadowOpMid);
@@ -25,4 +25,5 @@
   border-radius: $borderRadius * 4;
   margin: $padding * 2;
   background-color: color(contentDivBackground);
+  font-size: 0.9em;
 }

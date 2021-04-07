@@ -54,8 +54,14 @@ const WeatherCard = (props) => {
           }
         )}
       </div>
-      <div>{props.data.weather[0].description}</div>
-      <div>{props.data.main.temp}</div>
+      <div>
+        Weather:
+        <br /> {props.data.weather[0].description}
+      </div>
+      <div>
+        Temperature:
+        <br /> {props.data.main.temp}°C
+      </div>
     </div>
   );
 };
