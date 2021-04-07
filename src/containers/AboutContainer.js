@@ -20,16 +20,12 @@ export default function AboutContainer() {
 const Impressum = () => {
   return (
     <div className="about_inner_content">
+      <h3>IMPRESSUM</h3>
       <div>
-        <div>Impressum</div>
         <div>Company: Balázs Szolcsánszki for fun :D</div>
         <div>Creator: Balázs Szolcsánszki</div>
-        <div>
-          API: <Link to="#">http://homeoffice.com</Link>
-        </div>
-        <div>
-          Web: <Link to="#">localhost:3000</Link> :D
-        </div>
+        <div>API: http://homeoffice.com</div>
+        <div>Web: localhost:3000 :D</div>
       </div>
     </div>
   );
@@ -38,8 +34,10 @@ const Impressum = () => {
 const Policy = () => {
   return (
     <div className="about_inner_content">
-      <div>Policy</div>
-      <div>Under development...</div>
+      <h3>POLICY</h3>
+      <div>
+        <div>This page is under development...</div>
+      </div>
     </div>
   );
 };
@@ -47,11 +45,11 @@ const Policy = () => {
 const About = () => {
   return (
     <div className="about_inner_content">
+      <h3>ABOUT</h3>
       <div>
-        <div>About</div>
         <div>Design: Balázs Szolcsánszki</div>
-        <div>Front-end programmer: Balázs Szolcsánszki</div>
-        <div>Back-end programmer: Balázs Szolcsánszki</div>
+        <div>Front-end: Balázs Szolcsánszki</div>
+        <div>Back-end: Balázs Szolcsánszki</div>
       </div>
     </div>
   );
@@ -60,8 +58,8 @@ const About = () => {
 const Contact = () => {
   return (
     <div className="about_inner_content">
+      <h3>CONTACT</h3>
       <div>
-        <div>Contact</div>
         <div>Name: Balázs Szolcsánszki</div>
         <div>E-mail: bszolcsan@gmail.com</div>
         <div>Tel.: +3670/287-53-38</div>

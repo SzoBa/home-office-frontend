@@ -1,6 +1,11 @@
 #content_div_about {
-  @include contentDiv(600px, 1000px);
-  margin-top: -3%;
+  @include contentDiv(450px, 750px);
+  width: 750px;
+  height: 475px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   > :first-child {
     text-align: left;
@@ -11,8 +16,8 @@
 }
 
 .about_inner_content {
-  height: 480px;
-  width: 900px;
+  height: 300px;
+  width: 500px;
   border-radius: $borderRadius * 4;
   position: absolute;
   top: 50%;
@@ -23,4 +28,15 @@
     0 2px 5px color(contentDivShadowOpMax),
     inset 0 -1px 2px color(contentDivShadowOpMid);
   @include flexSetup(center, center, column);
+
+  > h3 {
+    text-shadow: 2px 2px 2px grey;
+  }
+
+  > div {
+    > div {
+      width: 100%;
+      text-align: left;
+    }
+  }
 }
