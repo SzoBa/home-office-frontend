@@ -1,14 +1,14 @@
 #main_content_container {
-  @include fixedPositionSetup(0%, 6%, 100%, 94%);
+  @include fixedPositionSetup(0%, $headerHeight, $fullWidth, $notFullHeight);
   overflow: auto;
   &::-webkit-scrollbar {
-    width: 10px;
+    width: $scrollbarWidth;
   }
   &::-webkit-scrollbar-track {
     background-color: color(white);
   }
   &::-webkit-scrollbar-thumb {
     background-color: color(scrollbarThumb);
-    border-radius: 5px;
+    border-radius: $borderRadius;
   }
 }

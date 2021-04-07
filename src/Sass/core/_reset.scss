@@ -1,7 +1,7 @@
 html,
 body,
 #root {
-  height: 100%;
+  height: $fullHeight;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,7 +14,7 @@ body,
 }
 
 a {
-  height: 100%;
+  height: $fullHeight;
   @include flexSetup(center, center, column);
   color: color(anchorBasic);
   text-shadow: -0.5px 0.5px 0 #ffff;

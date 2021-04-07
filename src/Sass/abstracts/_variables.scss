@@ -32,16 +32,35 @@ $colors: (
   scrollbarThumb: lightgrey,
 );
 
+$fullWidth: 100%;
+$fullHeight: 100%;
+$notFullHeight: 94%;
 $borderRadius: 5px;
 $padding: 5px;
 $upDownMargin: 10px auto; //maybe 1-2em instead?
+$simpleMargin: 10px;
 $sideAutoMargin: 0 auto;
+$scrollbarWidth: 10px;
 $desktop: 900px;
+
 $socialButtonSpanSize: 42px;
+
+$footerHeight: 6%;
+$footerNotFullMargin: 10.1%;
+
+$headerHeight: 6%;
+
 $emailPageHeaderHeights: 60px;
+$writeEmailButtonWidth: 75px;
+
+$formButtonWidth: 100px;
+$formButtonSize: 1.1em;
+
+$navbarWidth: 10%;
+$navbarButtonWidth: 75px;
 
 //ul -> list-style-type: none
-//margin: max(40px) - no Sass specific :D
+//margin: max(40px)
 //height: fit-content???
 //display: grid
 //grid-template-areas: 'bla bla . . .'

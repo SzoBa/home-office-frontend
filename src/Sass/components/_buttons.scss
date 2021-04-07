@@ -14,9 +14,9 @@ form > button {
     color(formButtonDark) 5%,
     color(formButtonLight) 100%
   );
-  width: 100px;
+  width: $formButtonWidth;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: $formButtonSize;
   color: color(formButtonText);
   box-shadow: inset 0 1px 0 0 color(formButtonShadow);
   border: 1px solid color(formButtonBorder);

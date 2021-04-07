@@ -1,6 +1,6 @@
 #footerContainer {
   @include flexSetup(space-evenly, center, row);
-  height: 6%;
+  height: $footerHeight;
   background-color: color(emailTableRowBackground);
   padding: 0 $padding * 3 0 $padding * 3;
 }
@@ -9,5 +9,5 @@
 }
 
 .footerEmail {
-  margin-left: 10.1%;
+  margin-left: $footerNotFullMargin;
 }

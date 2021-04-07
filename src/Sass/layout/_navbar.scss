@@ -1,6 +1,6 @@
 #navbar_container_open {
   @include flexSetup(left, center, column);
-  @include fixedPositionSetup(0, 6%, 10%, 94%);
+  @include fixedPositionSetup(0, $headerHeight, $navbarWidth, $notFullHeight);
   min-height: 89%;
   background-color: color(emailTableRowBackground);
   // opacity: 0.7;
@@ -35,7 +35,7 @@
   }
 
   div:first-child {
-    width: 100%;
+    width: $fullWidth;
     height: $emailPageHeaderHeights;
     @include flexSetup(center, center, column);
     font-weight: bold;
@@ -52,7 +52,7 @@
       background-color: white;
       border-radius: $borderRadius;
       padding: $padding;
-      min-width: 75px;
+      min-width: $navbarButtonWidth;
       font-weight: bold;
       margin: $padding;
     }

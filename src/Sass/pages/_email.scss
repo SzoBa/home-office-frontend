@@ -1,5 +1,5 @@
 .email_container {
-  @include contentContainerSetup(94%, 0 1% 1% 11%);
+  @include contentContainerSetup($notFullHeight, 0 1% 1% 11%);
 }
 
 .table_style {
@@ -62,13 +62,13 @@
 }
 
 .email_content_container {
-  @include contentDiv(600px, 100%);
+  @include contentDiv(600px, $fullWidth);
   opacity: 1;
   background-color: transparent;
   padding: 0;
 
   > div:first-of-type {
-    width: 100%;
+    width: $fullWidth;
     height: $emailPageHeaderHeights;
     @include flexSetup(center, center, row);
     font-weight: bold;
@@ -78,7 +78,7 @@
   }
 
   > div:not(:first-of-type) {
-    width: 100%;
+    width: $fullWidth;
     height: $emailPageHeaderHeights * 9;
     @include flexSetup(flex-start, center, column);
     padding: $padding;
@@ -88,13 +88,13 @@
     button {
       border-radius: $borderRadius;
       padding: $padding * 2;
-      min-width: 75px;
+      min-width: $writeEmailButtonWidth;
       font-weight: bold;
       margin: $padding;
     }
 
     > div:nth-child(n + 1):nth-child(-n + 4) {
-      width: 100%;
+      width: $fullWidth;
       @include flexSetup(space-evenly, center, column);
       padding: $padding;
     }

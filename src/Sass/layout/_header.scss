@@ -1,5 +1,5 @@
 #headerContainer {
-  @include fixedPositionSetup(0, 0, 100%, 6%);
+  @include fixedPositionSetup(0, 0, $fullWidth, $headerHeight);
   @include flexSetup(flex-end);
 
   a {
