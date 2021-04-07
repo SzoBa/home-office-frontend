@@ -23,7 +23,7 @@ export default function LoginPage() {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,
     };
-    UsePostData(ENV.simpleLogin, "token, if exists", userObject, (response) => {
+    UsePostData(ENV.simpleLogin, "", userObject, (response) => {
       setErrorMessage([]);
       if (response.status === 201) {
         dispatch(login(response.data));
@@ -63,11 +63,7 @@ export default function LoginPage() {
     const getData = async () => {
       const response = await axios(options);
       setGithubLoginUrl(response.data.url);
-      document.cookie = `data={"locationData":${JSON.stringify(
-        locationData
-      )},"actualWeather":${JSON.stringify(
-        actualWeather
-      )},"background":${JSON.stringify(background)}};`;
+      setCookieData(locationData, actualWeather, background);
     };
     getData().catch((error) => {
       console.log(error.response.data);
@@ -116,4 +112,11 @@ export default function LoginPage() {
       </div>
     </div>
   );
+}
+function setCookieData(locationData, actualWeather, background) {
+  document.cookie = `data={"locationData":${JSON.stringify(
+    locationData
+  )},"actualWeather":${JSON.stringify(
+    actualWeather
+  )},"background":${JSON.stringify(background)}};`;
 }

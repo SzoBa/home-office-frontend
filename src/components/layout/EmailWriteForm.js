@@ -20,7 +20,7 @@ const EmailWriteForm = (props) => {
 
   function saveHandler(event) {
     event.preventDefault();
-    console.log("save to drafts, or smthg?");
+    console.log("save to drafts, or something?");
   }
 
   return (

@@ -5,7 +5,7 @@ import { setUrlOptions, writeEmail, readEmail } from "../../actions/index";
 
 const Navbar = (props) => {
   const dispatch = useDispatch();
-  //TODO: remove the unread parameter
+  //TODO: remove the unread parameter from initial state when load optimized
 
   const handleEmailInbox = () => {
     dispatch(setUrlOptions("?q=in:inbox"));

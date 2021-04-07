@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-const useGetData = (url, token, setErrorMessage) => {
+const useGetData = (url, token = "", setErrorMessage) => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchedData, setFetchedData] = useState([]);
   const history = useHistory();

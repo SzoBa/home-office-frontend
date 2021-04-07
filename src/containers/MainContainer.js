@@ -9,7 +9,6 @@ import EmailPage from "../components/pages/EmailPage";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
-// import Sidebar from "../components/layout/Sidebar";
 import PrivateRoute from "./PrivateRoute";
 import RegistrationPage from "../components/pages/RegistrationPage";
 import * as weatherImages from "../components/images/weatherIndex";
@@ -33,7 +32,6 @@ export default function MainContainer() {
     >
       <Header />
       <Navbar />
-      {/* <Sidebar /> */}
       <div id="main_content_container">
         <Route exact path="/" component={MainPage} />
         <Route path="/registration" component={RegistrationPage} />

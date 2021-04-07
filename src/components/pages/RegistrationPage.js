@@ -16,22 +16,17 @@ const RegistrationPage = (props) => {
       password: event.target.elements.password.value,
       password_confirmation: event.target.elements.password_confirmation.value,
     };
-    UsePostData(
-      ENV.simpleRegistration,
-      "token, if exists",
-      userObject,
-      (response) => {
-        setErrorMessage([]);
-        if (response.status === 201) {
-          return history.push("/login");
-        }
-        Object.entries(response).forEach(([k, v]) => {
-          v.forEach((value) => {
-            setErrorMessage((old) => [...old, value]);
-          });
-        });
+    UsePostData(ENV.simpleRegistration, "", userObject, (response) => {
+      setErrorMessage([]);
+      if (response.status === 201) {
+        return history.push("/login");
       }
-    );
+      Object.entries(response).forEach(([k, v]) => {
+        v.forEach((value) => {
+          setErrorMessage((old) => [...old, value]);
+        });
+      });
+    });
   };
 
   return (
