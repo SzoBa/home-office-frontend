@@ -7,6 +7,11 @@ import {
   setActualWeather,
 } from "../../actions/index";
 import axios from "axios";
+import {
+  PICTURE_TIME,
+  PICTURE_WEATHER,
+  WEATHER,
+} from "../../containers/ConstContainer";
 
 export default function MainPage() {
   const locationData = useSelector((state) => state.location);
@@ -129,24 +134,24 @@ export default function MainPage() {
     const sunriseDate = new Date(actualWeather.sys.sunrise * 1000);
     const sunsetDate = new Date(actualWeather.sys.sunset * 1000);
     return actualDate < sunriseDate
-      ? "night"
+      ? PICTURE_TIME.NIGHT
       : actualDate - sunriseDate < (sunsetDate - sunriseDate) / 4
-      ? "morning"
+      ? PICTURE_TIME.MORNING
       : actualDate - sunriseDate < ((sunsetDate - sunriseDate) * 3) / 4
-      ? "midday"
+      ? PICTURE_TIME.MIDDAY
       : actualDate - sunriseDate < sunsetDate - sunriseDate
-      ? "afternoon"
-      : "night";
+      ? PICTURE_TIME.AFTERNOON
+      : PICTURE_TIME.NIGHT;
   }
 
   function compareWeatherParams() {
     const weatherData = actualWeather.weather[0];
-    return weatherData.main === "Thunderstorm"
-      ? "storm"
-      : weatherData.main === "Rain"
-      ? "rain"
-      : weatherData.main === "Clear"
-      ? "sun"
-      : "clouds";
+    return weatherData.main === WEATHER.THUNDERSTORM
+      ? PICTURE_WEATHER.STORM
+      : weatherData.main === WEATHER.RAIN
+      ? PICTURE_WEATHER.RAIN
+      : weatherData.main === WEATHER.CLEAR
+      ? PICTURE_WEATHER.SUN
+      : PICTURE_WEATHER.CLOUDS;
   }
 }
