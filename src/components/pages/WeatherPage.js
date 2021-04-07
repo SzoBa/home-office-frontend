@@ -11,8 +11,7 @@ const WeatherPage = (props) => {
   const locationData = useSelector((state) => state.location);
   const [loading, forecastData] = useGetData(
     ENV.weatherForecast +
-      `?longitude=${locationData.longitude}&latitude=${locationData.latitude}`,
-    "no token"
+      `?longitude=${locationData.longitude}&latitude=${locationData.latitude}`
   );
 
   return (
