@@ -8,7 +8,7 @@ export default function MainPage() {
     <div className="full_width_container">
       {actualWeather.name ? (
         <div id="content_div_main">
-          <h4>Weather data</h4>
+          <h4>Actual Weather</h4>
           <p>Location: {actualWeather.name}</p>
           <p>Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
           <p>

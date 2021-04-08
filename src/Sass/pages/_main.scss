@@ -2,4 +2,11 @@
   @include contentDiv(400px, 30%);
   margin: -3% auto 3% auto;
   background: color(white);
+
+  > h4 {
+    margin: 10px auto;
+  }
+  > p {
+    margin: 10px auto;
+  }
 }
