@@ -1,13 +1,18 @@
 #content_div_weather {
-  @include contentDiv(300px, 90%);
+  @include contentDiv(300px, 1200px + $padding * 45);
 
   > div:first-child {
     margin: $padding * 2;
+    font-weight: bold;
   }
 
-  > div:nth-child(2) {
+  > div:nth-child(3) {
     @include flexSetup(space-between, center, row);
-    padding: $padding * 2;
+
+    > div > div {
+      padding: $padding;
+      font-weight: bold;
+    }
   }
 }
 
@@ -16,7 +21,7 @@
   flex-wrap: wrap;
 }
 .weather_card {
-  height: 200px;
+  height: 300px;
   width: 150px;
   box-shadow: 0 0 0 1px color(contentDivShadowOpLow),
     0 2px 5px color(contentDivShadowOpMax),
@@ -26,4 +31,14 @@
   margin: $padding * 2;
   background-color: color(contentDivBackground);
   font-size: 0.9em;
+
+  > div:nth-child(1),
+  div:nth-child(4) {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  > div:nth-child(2) {
+    margin: 10px -10px;
+  }
 }

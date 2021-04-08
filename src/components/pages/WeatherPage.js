@@ -5,8 +5,8 @@ import {
   FORECAST_ONE_DAY,
 } from "../../containers/ConstContainer";
 import useGetData from "../../hooks/UseGet";
+import WeatherCard from "../layout/WeatherCard";
 import * as ENV from "../files/ENV.json";
-import TestImage from "../images/weatherIcons/01d.png";
 
 const WeatherPage = (props) => {
   const locationData = useSelector((state) => state.location);
@@ -36,27 +36,30 @@ const WeatherPage = (props) => {
         <div>Loading....</div>
       ) : (
         <div id="content_div_weather">
-          <div>Current position: {forecastData.city.name}</div>
+          <div>Current position:</div>
+          <div>{forecastData.city.name}</div>
           <div>
             <div>
-              Today:
-              <br />
-              {0 < filteredForecastData.length
-                ? getPrettyDate(
-                    filteredForecastData[0][FORECAST_DATE_KEY] * 1000
-                  )
-                : ""}
+              <div>Today:</div>
+              <div>
+                {0 < filteredForecastData.length
+                  ? getPrettyDate(
+                      filteredForecastData[0][FORECAST_DATE_KEY] * 1000
+                    )
+                  : ""}
+              </div>
             </div>
             <div>
-              Tomorrow:
-              <br />
-              {0 < filteredForecastData.length
-                ? getPrettyDate(
-                    filteredForecastData[filteredForecastData.length - 1][
-                      FORECAST_DATE_KEY
-                    ] * 1000
-                  )
-                : ""}
+              <div>Tomorrow:</div>
+              <div>
+                {0 < filteredForecastData.length
+                  ? getPrettyDate(
+                      filteredForecastData[filteredForecastData.length - 1][
+                        FORECAST_DATE_KEY
+                      ] * 1000
+                    )
+                  : ""}
+              </div>
             </div>
           </div>
           <div id="content_div_weather_cards">
@@ -72,48 +75,11 @@ const WeatherPage = (props) => {
 
 export default WeatherPage;
 
-const WeatherCard = (props) => {
-  return (
-    <div className="weather_card">
-      <div>{getPrettyTime(props.data[FORECAST_DATE_KEY] * 1000)}</div>
-      <p></p>
-      <div>
-        Weather:
-        <br /> {props.data.weather[0].description}
-      </div>
-      <div>{props.data.weather[0].id}</div>
-      <div>{props.data.weather[0].icon}</div>
-      <div
-        style={{
-          height: "140px",
-          width: "140px",
-          backgroundImage: `url(${TestImage})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: "white",
-          marginLeft: "-15px",
-        }}
-      ></div>
-      <div>
-        <br /> {Math.round(props.data.main.temp, 0)}°C
-      </div>
-    </div>
-  );
-};
-
 function filterTimeInterval(dataArray, timeKey, interval = FORECAST_ONE_DAY) {
   let endingDate = new Date((dataArray[0][timeKey] + interval) * 1000);
   return dataArray.filter(
     (data) => new Date(data[timeKey] * 1000) < endingDate
   );
-}
-
-function getPrettyTime(unixTimestamp) {
-  return new Date(unixTimestamp).toLocaleTimeString(navigator.language, {
-    hour: "numeric",
-    minute: "2-digit",
-  });
 }
 
 function getPrettyDate(unixTimestamp) {
