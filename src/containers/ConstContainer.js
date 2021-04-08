@@ -25,3 +25,5 @@ export const PICTURE_WEATHER = {
   SUN: "sun",
   CLOUDS: "clouds",
 };
+
+export const WEATHER_ICON_PREFIX = "wI";
