@@ -79,7 +79,7 @@
 
   > div:not(:first-of-type) {
     width: $fullWidth;
-    height: $emailPageHeaderHeights * 9;
+    height: $emailPageHeaderHeights * 9.5;
     @include flexSetup(flex-start, center, column);
     padding: $padding;
     background-color: color(emailTableRowBackground);
@@ -93,22 +93,26 @@
       margin: $padding;
     }
 
-    > div:nth-child(n + 1):nth-child(-n + 4) {
+    .email_inputs {
       width: $fullWidth;
-      @include flexSetup(space-evenly, center, column);
+      @include flexSetup(space-evenly, center, row);
       padding: $padding;
+
+      > div {
+        @include flexSetup(space-evenly, flex-end, column);
+      }
     }
 
-    > div:nth-child(5) {
-      width: $emailPageHeaderHeights * 15;
-      height: $emailPageHeaderHeights * 2;
-      background-color: color(white);
-    }
+    // > div:nth-child(5) {
+    //   width: $emailPageHeaderHeights * 15;
+    //   height: $emailPageHeaderHeights * 2;
+    //   background-color: color(white);
+    // }
 
     > div:last-child {
-      width: 50%;
+      width: 60%;
       @include flexSetup(space-evenly, center, row);
-      padding: $padding * 3;
+      padding: $padding;
     }
   }
 }
