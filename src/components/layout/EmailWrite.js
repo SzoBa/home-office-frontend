@@ -4,7 +4,7 @@ import UsePostData from "../../hooks/UsePostData";
 import * as ENV from "../files/ENV.json";
 import { Editor } from "@tinymce/tinymce-react";
 
-const EmailWriteForm = (props) => {
+const EmailWrite = (props) => {
   const user = useSelector((state) => state.login);
 
   function sendHandler(event) {
@@ -35,7 +35,7 @@ const EmailWriteForm = (props) => {
               <input type="email" id="address" name="address" />
             </div>
             <div>
-              <label>Subject: </label>
+              <label>Subject:</label>
               <input id="subject" type="text" name="subject" />
             </div>
           </div>
@@ -58,20 +58,32 @@ const EmailWriteForm = (props) => {
             Send mail
           </button>
         </div>
-        <div>
+        <div id="email_editor">
           <Editor
             apiKey="uwgyl20ncogc7eof6res2xp6ibqs2c43kvysba0y8o1hpj27"
             initialValue="<p>This is the initial content of the editor</p>"
             init={{
-              height: 400,
-              menubar: true,
+              height: 450,
+              menubar: true /**min_height setup - turn off when xs? */,
+              mobile: {
+                menubar: true,
+                plugins: ["autosave"],
+                toolbar: ["undo", "bold"],
+              },
+              statusbar: true,
+              draggable_modal: true,
+              resize: false,
+              skin: "oxide" /** use conditional to change light - dark */,
+              content_css: ["light"],
+              content_style: "body {font-size: 0.95em;}",
               plugins: [
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste code help wordcount",
+                "insertdatetime media table paste code help imagetools codesample powerpaste wordcount",
               ],
+              contextmenu: "link",
               toolbar:
-                "undo redo | formatselect | bold italic backcolor | \
+                "undo redo | formatselect | bold italic underline backcolor | \
              alignleft aligncenter alignright alignjustify | \
              bullist numlist outdent indent | removeformat | help",
             }}
@@ -93,4 +105,4 @@ const EmailWriteForm = (props) => {
   }
 };
 
-export default EmailWriteForm;
+export default EmailWrite;

@@ -62,7 +62,7 @@
 }
 
 .email_content_container {
-  @include contentDiv(600px, $fullWidth);
+  @include contentDiv(600px, 1000px);
   opacity: 1;
   background-color: transparent;
   padding: 0;
@@ -79,8 +79,8 @@
 
   > div:not(:first-of-type) {
     width: $fullWidth;
-    height: $emailPageHeaderHeights * 9.5;
-    @include flexSetup(flex-start, center, column);
+    height: $emailPageHeaderHeights * 8;
+    @include flexSetup(flex-start, center, row);
     padding: $padding;
     background-color: color(emailTableRowBackground);
     border-radius: 0 0 $borderRadius * 3 $borderRadius * 3;
@@ -94,25 +94,38 @@
     }
 
     .email_inputs {
-      width: $fullWidth;
-      @include flexSetup(space-evenly, center, row);
-      padding: $padding;
+      height: $fullWidth;
+      width: 300px;
+      @include flexSetup(space-evenly, center, column);
+      padding: $padding * 3;
 
       > div {
         @include flexSetup(space-evenly, flex-end, column);
       }
     }
 
-    // > div:nth-child(5) {
-    //   width: $emailPageHeaderHeights * 15;
-    //   height: $emailPageHeaderHeights * 2;
-    //   background-color: color(white);
-    // }
-
     > div:last-child {
-      width: 60%;
+      width: $fullWidth;
       @include flexSetup(space-evenly, center, row);
       padding: $padding;
     }
+  }
+}
+
+#email_editor {
+  padding: 0;
+  margin: 0;
+
+  button {
+    margin: 0;
+    min-width: 20px;
+    border-radius: 0%;
+  }
+
+  .tox-statusbar__branding {
+    display: none;
+  }
+
+  .tox-menubar {
   }
 }
