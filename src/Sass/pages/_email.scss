@@ -62,7 +62,7 @@
 }
 
 .email_content_container {
-  @include contentDiv(600px, 1000px);
+  @include contentDiv(600px, 1200px);
   opacity: 1;
   background-color: transparent;
   padding: 0;
@@ -79,7 +79,7 @@
 
   > div:not(:first-of-type) {
     width: $fullWidth;
-    height: $emailPageHeaderHeights * 8;
+    height: $emailPageHeaderHeights * 9;
     @include flexSetup(flex-start, center, row);
     padding: $padding;
     background-color: color(emailTableRowBackground);
