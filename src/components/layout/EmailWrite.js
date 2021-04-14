@@ -6,10 +6,18 @@ import { Editor } from "@tinymce/tinymce-react";
 
 const EmailWrite = (props) => {
   const user = useSelector((state) => state.login);
+  const [error, setError] = useState(null);
   const [emailAddress, setEmailAddress] = useState({
     addresses: [],
     addressValue: "",
-    error: null,
+  });
+  const [ccEmailAddress, setCcEmailAddress] = useState({
+    addresses: [],
+    addressValue: "",
+  });
+  const [bccEmailAddress, setBccEmailAddress] = useState({
+    addresses: [],
+    addressValue: "",
   });
 
   const [mailEditorText, setMailEditorText] = useState(
@@ -21,13 +29,16 @@ const EmailWrite = (props) => {
   );
 
   function sendHandler(event) {
-    const emailObject = createEmailObject(event, "emailData");
+    const emailObject = createEmailObject();
     UsePostData(ENV.mails, user.sanctum_token, emailObject, (response) => {
-      // setErrorMessage([]);
+      setError(null);
       if (response.status === 201) {
         console.log(response.data);
+      } else if (typeof response === "object") {
+        setError(Object.values(response).join("\n"));
+      } else {
+        setError(response);
       }
-      // handleErrorMessage(response, setErrorMessage);
     });
   }
 
@@ -58,8 +69,10 @@ const EmailWrite = (props) => {
                 name="address"
                 placeholder="Type email and press Enter"
                 value={emailAddress.addressValue}
-                onChange={addressChangeHandler}
-                onKeyDown={addressKeypressHandler}
+                onChange={(e) => addressChangeHandler(e, setEmailAddress)}
+                onKeyDown={(e) =>
+                  addressKeypressHandler(e, emailAddress, setEmailAddress)
+                }
               />
             </div>
             <div>
@@ -75,6 +88,11 @@ const EmailWrite = (props) => {
                 id="carbon_copy"
                 name="carbon_copy"
                 placeholder="Type email and press Enter"
+                value={ccEmailAddress.addressValue}
+                onChange={(e) => addressChangeHandler(e, setCcEmailAddress)}
+                onKeyDown={(e) =>
+                  addressKeypressHandler(e, ccEmailAddress, setCcEmailAddress)
+                }
               />
             </div>
             <div>
@@ -84,10 +102,15 @@ const EmailWrite = (props) => {
                 id="blind_carbon"
                 name="blind_carbon"
                 placeholder="Type email and press Enter"
+                value={bccEmailAddress.addressValue}
+                onChange={(e) => addressChangeHandler(e, setBccEmailAddress)}
+                onKeyDown={(e) =>
+                  addressKeypressHandler(e, bccEmailAddress, setBccEmailAddress)
+                }
               />
             </div>
           </div>
-          {emailAddress.error && <p>{emailAddress.error}</p>}
+          {error && <p>{error}</p>}
         </div>
         <div>
           <button type="button" onClick={clearHandler} name="clear" id="clear">
@@ -100,7 +123,9 @@ const EmailWrite = (props) => {
           <button type="button" onClick={saveHandler} name="save" id="save">
             Save as draft
           </button>
-          buub
+          <button type="button" onClick={sendHandler} name="send" id="send">
+            Send
+          </button>
         </div>
         <div id="email_editor">
           <Editor
@@ -143,13 +168,14 @@ const EmailWrite = (props) => {
     </div>
   );
 
-  function createEmailObject(event) {
+  function createEmailObject() {
     return {
-      address: emailAddress.addresses,
-      // cc: emailInputs.cc,
-      // bcc: emailInputs.bcc,
-      // subject: emailInputs.subject,
-      message: "mailDataState.message",
+      address:
+        0 < emailAddress.addresses.length ? emailAddress.addresses : "Bambi",
+      cc: ccEmailAddress.addresses,
+      bcc: bccEmailAddress.addresses,
+      subject: "subject",
+      message: window.tinymce.activeEditor.getContent({ format: "raw" }),
     };
   }
 
@@ -170,19 +196,19 @@ const EmailWrite = (props) => {
     }));
   }
 
-  function addressChangeHandler(event) {
-    setEmailAddress((prevState) => ({
+  function addressChangeHandler(event, setState) {
+    setState((prevState) => ({
       ...prevState,
       addressValue: event.target.value,
     }));
   }
 
-  function addressKeypressHandler(event) {
+  function addressKeypressHandler(event, state, setState) {
     if (["Enter", ";"].includes(event.key)) {
       event.preventDefault();
       if (event.target.value && validateEmail(event.target.value)) {
-        setEmailAddress({
-          addresses: [...emailAddress.addresses, event.target.value],
+        setState({
+          addresses: [...state.addresses, event.target.value],
           addressValue: "",
         });
       }
@@ -194,17 +220,17 @@ const EmailWrite = (props) => {
     if (emailAddress.addresses.includes(newAddress)) {
       error = `${newAddress} already set!`;
     }
-    if (!testSyntax(newAddress)) {
+    if (!testEmailSyntax(newAddress)) {
       error = `${newAddress} is not a valid address!`;
     }
     if (error) {
-      setEmailAddress((prevState) => ({ ...prevState, error: error }));
+      setError(error);
       return false;
     }
     return true;
   }
 
-  function testSyntax(newEmail) {
+  function testEmailSyntax(newEmail) {
     return /[\w\d.-]+@[\w\d.-]+.[\w\d.-]{2,3}/.test(newEmail);
   }
 };
