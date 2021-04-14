@@ -30,11 +30,16 @@ $colors: (
   emailTableTbodyBorder: #9ea8f0,
   emailTableThFontColor: white,
   scrollbarThumb: lightgrey,
+  emailLoadingBackgroundLow: rgba(108, 122, 224, 0.5),
+  emailLoadingBackgroundMax: rgba(108, 122, 224, 0.9),
+  emailLoadingShadowColor: rgba(#275efe, 0.3),
+  emailLoadingTextColor: white,
 );
 
 $fullWidth: 100%;
 $fullHeight: 100%;
 $notFullHeight: 94%;
+$notFullFixHeightContent: 86vh;
 $borderRadius: 5px;
 $padding: 5px;
 $upDownMargin: 10px auto; //maybe 1-2em instead?
@@ -58,6 +63,14 @@ $formButtonSize: 1.1em;
 
 $navbarWidth: 10%;
 $navbarButtonWidth: 75px;
+
+$loadingFontSize: 2em;
+$loadingTextShadow: 1px 1px black;
+
+$emailLoadingPageColor: rgba(white, 0.7);
+$emailLoadingAnimatedPageColor: rgba(white, 0.85);
+$emailLoadingAnimationDuration: 3s;
+$emailLoadingPageAnimationRotation: -6deg;
 
 //ul -> list-style-type: none
 //margin: max(40px)
