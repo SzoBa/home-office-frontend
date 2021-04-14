@@ -1,0 +1,117 @@
+$emailLoadingContentWidth: 400px;
+$emailLoadingContentHeight: 280px;
+$emailLoadingSvgPadding: 10px;
+
+.loading_container {
+  min-height: $notFullFixHeightContent;
+  @include flexSetup(center, center, row);
+}
+.loader {
+  width: $emailLoadingContentWidth;
+  height: $emailLoadingContentHeight;
+  position: relative;
+  &:before,
+  &:after {
+    --r: -6deg;
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    width: 120px;
+    top: 80%;
+    box-shadow: 0 16px 12px color(emailLoadingShadowColor);
+    transform: rotate(var(--r));
+  }
+  &:before {
+    left: 4px;
+  }
+  &:after {
+    --r: 6deg;
+    right: 4px;
+  }
+  div {
+    width: $fullWidth;
+    height: $fullHeight;
+    border-radius: $borderRadius * 5;
+    position: relative;
+    perspective: 600px;
+    box-shadow: 0 4px 6px color(emailLoadingShadowColor);
+    background-image: linear-gradient(
+      90deg,
+      color(emailLoadingBackgroundMax),
+      color(emailLoadingBackgroundLow)
+    );
+    ul {
+      list-style: none;
+      li {
+        --r: 180deg;
+        --o: 0;
+        position: absolute;
+        top: $emailLoadingSvgPadding;
+        left: $emailLoadingSvgPadding;
+        transform-origin: 100% 50%;
+        color: $emailLoadingPageColor;
+        opacity: var(--o);
+        transform: rotateY(var(--r));
+        animation: $emailLoadingAnimationDuration ease infinite;
+        $i: 2;
+        @while $i < 6 {
+          &:nth-child(#{$i}) {
+            color: $emailLoadingAnimatedPageColor;
+            animation-name: page-#{$i};
+          }
+          $i: $i + 1;
+        }
+
+        svg {
+          width: $emailLoadingContentWidth / 2 - $emailLoadingSvgPadding;
+          height: $emailLoadingContentHeight - $emailLoadingSvgPadding * 1.9;
+          display: block;
+        }
+        &:first-child {
+          --r: 0deg;
+          --o: 1;
+        }
+        &:last-child {
+          --o: 1;
+        }
+      }
+    }
+  }
+  span {
+    top: $fullHeight;
+    margin-top: $simpleMargin * 2;
+    color: color(emailLoadingTextColor);
+    font-weight: bold;
+    font-size: $loadingFontSize;
+    text-shadow: $loadingTextShadow;
+  }
+}
+
+$i: 2;
+
+@while $i < 6 {
+  $delay: $i * 15 - 30;
+
+  @keyframes page-#{$i} {
+    #{0 + $delay}% {
+      transform: rotateY(180deg);
+      opacity: 0;
+    }
+
+    #{20 + $delay}% {
+      opacity: 1;
+    }
+
+    #{35 + $delay}%,
+    100% {
+      opacity: 0;
+    }
+
+    #{50 + $delay}%,
+    100% {
+      transform: rotateY(0deg);
+    }
+  }
+
+  $i: $i + 1;
+}
