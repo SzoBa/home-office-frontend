@@ -11,6 +11,7 @@ import {
   SUBJECT,
   UNREAD,
 } from "../../containers/ConstContainer";
+import EmailLoadingModal from "./EmailLoadingModal";
 
 const EmailTable = (props) => {
   const [messageDetails, setMessageDetails] = useState([]);
@@ -32,68 +33,75 @@ const EmailTable = (props) => {
   };
 
   return (
-    <table className="table_style">
-      <thead>
-        <tr>
-          <th
-            onClick={() => sortByField(SUBJECT)}
-            className={showSortedBy(SUBJECT)}
-          >
-            {SUBJECT}
-          </th>
-          <th
-            onClick={() => sortByField(SNIPPET)}
-            className={showSortedBy(SNIPPET)}
-          >
-            Message
-          </th>
-          <th onClick={() => sortByField(FROM)} className={showSortedBy(FROM)}>
-            Author
-          </th>
-          <th onClick={() => sortByField(DATE)} className={showSortedBy(DATE)}>
-            Created at
-          </th>
-          <th>Delete</th>
-          <th>Mark as unread</th>
-        </tr>
-      </thead>
-      {loading ? (
-        <div style={{ color: "white" }}>Loading</div>
+    <React.Fragment>
+      {1 == 1 ? (
+        <EmailLoadingModal />
       ) : (
-        <tbody>
-          {sortedMessages.map((message) => (
-            <tr
-              key={message.id}
-              style={{
-                fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
-              }}
-            >
-              <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
-              <td
-                dangerouslySetInnerHTML={{
-                  __html: setMaxChars(message[SNIPPET] + "..."),
+        <table className="table_style">
+          <thead>
+            <tr>
+              <th
+                onClick={() => sortByField(SUBJECT)}
+                className={showSortedBy(SUBJECT)}
+              >
+                {SUBJECT}
+              </th>
+              <th
+                onClick={() => sortByField(SNIPPET)}
+                className={showSortedBy(SNIPPET)}
+              >
+                Message
+              </th>
+              <th
+                onClick={() => sortByField(FROM)}
+                className={showSortedBy(FROM)}
+              >
+                Author
+              </th>
+              <th
+                onClick={() => sortByField(DATE)}
+                className={showSortedBy(DATE)}
+              >
+                Created at
+              </th>
+              <th>Delete</th>
+              <th>Mark as unread</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedMessages.map((message) => (
+              <tr
+                key={message.id}
+                style={{
+                  fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
                 }}
-              ></td>
-              <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
-              <td>
-                {new Date(getDataFromMessage(message, DATE)).toLocaleTimeString(
-                  navigator.language,
-                  {
+              >
+                <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
+                <td
+                  dangerouslySetInnerHTML={{
+                    __html: setMaxChars(message[SNIPPET] + "..."),
+                  }}
+                ></td>
+                <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
+                <td>
+                  {new Date(
+                    getDataFromMessage(message, DATE)
+                  ).toLocaleTimeString(navigator.language, {
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit",
                     hour: "2-digit",
                     minute: "2-digit",
-                  }
-                )}
-              </td>
-              <td>Del icon</td>
-              <td>Unr icon</td>
-            </tr>
-          ))}
-        </tbody>
+                  })}
+                </td>
+                <td>Del icon</td>
+                <td>Unr icon</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
-    </table>
+    </React.Fragment>
   );
 
   function getDataFromMessage(message, dataName) {
