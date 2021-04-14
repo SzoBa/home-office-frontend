@@ -19,7 +19,9 @@ const EmailWrite = (props) => {
     addresses: [],
     addressValue: "",
   });
-
+  const [emailSubject, setEmailSubject] = useState({
+    subject: "",
+  });
   const [mailEditorText, setMailEditorText] = useState(
     "<p>Here write your mail</p>"
   );
@@ -33,7 +35,7 @@ const EmailWrite = (props) => {
     UsePostData(ENV.mails, user.sanctum_token, emailObject, (response) => {
       setError(null);
       if (response.status === 201) {
-        console.log(response.data);
+        setError("Email sent");
       } else if (typeof response === "object") {
         setError(Object.values(response).join("\n"));
       } else {
@@ -77,7 +79,13 @@ const EmailWrite = (props) => {
             </div>
             <div>
               <label>Subject:</label>
-              <input id="subject" type="text" name="subject" />
+              <input
+                id="subject"
+                type="text"
+                name="subject"
+                value={emailSubject.subject}
+                onChange={emailSubjectChangeHandler}
+              />
             </div>
           </div>
           <div>
@@ -174,7 +182,7 @@ const EmailWrite = (props) => {
         0 < emailAddress.addresses.length ? emailAddress.addresses : "Bambi",
       cc: ccEmailAddress.addresses,
       bcc: bccEmailAddress.addresses,
-      subject: "subject",
+      subject: emailSubject.subject,
       message: window.tinymce.activeEditor.getContent({ format: "raw" }),
     };
   }
@@ -215,6 +223,9 @@ const EmailWrite = (props) => {
     }
   }
 
+  function emailSubjectChangeHandler(event) {
+    setEmailSubject({ subject: event.target.value });
+  }
   function validateEmail(newAddress) {
     let error = null;
     if (emailAddress.addresses.includes(newAddress)) {
