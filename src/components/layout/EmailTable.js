@@ -34,7 +34,7 @@ const EmailTable = (props) => {
 
   return (
     <React.Fragment>
-      {loading ? (
+      {1 == 1 ? (
         <EmailLoadingModal />
       ) : (
         <table className="table_style">
