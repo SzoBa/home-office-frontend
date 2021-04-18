@@ -12,10 +12,12 @@ import {
   UNREAD,
 } from "../../containers/ConstContainer";
 import EmailLoadingModal from "./EmailLoadingModal";
+import EmailDetailsModal from "./EmailDetailsModal";
 
 const EmailTable = (props) => {
   const [messageDetails, setMessageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
   UseGetEmailData(setMessageDetails, setLoading);
 
@@ -31,10 +33,10 @@ const EmailTable = (props) => {
   const showSortedBy = (fieldName) => {
     return sortConfig.key === fieldName ? sortConfig.direction : "";
   };
-
   return (
     <React.Fragment>
-      {1 == 1 ? (
+      {message && <EmailDetailsModal message={message} />}
+      {loading ? (
         <EmailLoadingModal />
       ) : (
         <table className="table_style">
@@ -75,6 +77,9 @@ const EmailTable = (props) => {
                 style={{
                   fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
                 }}
+                onClick={(e) => {
+                  showMessageHandler(e, message);
+                }}
               >
                 <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
                 <td
@@ -103,6 +108,15 @@ const EmailTable = (props) => {
       )}
     </React.Fragment>
   );
+
+  function showMessageHandler(event, message) {
+    setMessage({
+      id: message.id,
+      sender: getDataFromMessage(message, FROM),
+      cc: "cc",
+      subject: getDataFromMessage(message, SUBJECT),
+    });
+  }
 
   function getDataFromMessage(message, dataName) {
     return message.payload.headers.filter(function (subject) {
