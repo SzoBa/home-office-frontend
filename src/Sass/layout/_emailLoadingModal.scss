@@ -2,10 +2,6 @@ $emailLoadingContentWidth: 400px;
 $emailLoadingContentHeight: 280px;
 $emailLoadingSvgPadding: 10px;
 
-.loading_container {
-  min-height: $notFullFixHeightContent;
-  @include flexSetup(center, center, row);
-}
 .loader {
   width: $emailLoadingContentWidth;
   height: $emailLoadingContentHeight;

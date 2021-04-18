@@ -1,0 +1,14 @@
+.content_modal {
+  > div {
+    @include flexSetup(left, flex-start, row);
+    width: $fullWidth;
+  }
+}
+
+#message_div {
+  height: 400px;
+  width: inherit;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
