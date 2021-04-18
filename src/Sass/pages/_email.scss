@@ -85,14 +85,7 @@
     background-color: color(emailTableRowBackground);
     border-radius: 0 0 $borderRadius * 3 $borderRadius * 3;
 
-    button {
-      border-radius: $borderRadius;
-      padding: $padding * 2;
-      min-width: $writeEmailButtonWidth;
-      font-weight: bold;
-      margin: $padding;
-    }
-
+    // Email Write component
     .email_inputs {
       height: $fullWidth;
       width: 300px;
@@ -110,6 +103,19 @@
       padding: $padding;
     }
   }
+}
+
+.email_addresses {
+  @include flexSetup(flex-start, center, row);
+  flex-wrap: wrap;
+  padding: $padding;
+}
+.email_address_container {
+  margin: 1px;
+  border: 1px solid black;
+  border-radius: $borderRadius;
+  background: white;
+  font-size: 0.8em;
 }
 
 #email_editor {

@@ -32,6 +32,7 @@ const EmailWrite = (props) => {
 
   function sendHandler(event) {
     const emailObject = createEmailObject();
+    console.log(emailObject);
     UsePostData(ENV.mails, user.sanctum_token, emailObject, (response) => {
       setError(null);
       if (response.status === 201) {
@@ -57,14 +58,19 @@ const EmailWrite = (props) => {
           <div>
             <div>
               <label>Send to user: </label>
-              {emailAddress.addresses.map((adr) => (
-                <div key={adr}>
-                  {adr}
-                  <button onClick={() => addressDeleteHandler(adr)}>
-                    &times;
-                  </button>
-                </div>
-              ))}
+              <div className="email_addresses">
+                {emailAddress.addresses.map((adr) => (
+                  <div key={adr} className="email_address_container">
+                    {adr}
+                    <button
+                      className="delete_button"
+                      onClick={() => addressDeleteHandler(adr, setEmailAddress)}
+                    >
+                      &times;
+                    </button>
+                  </div>
+                ))}
+              </div>
               <input
                 type="email"
                 id="address"
@@ -91,6 +97,21 @@ const EmailWrite = (props) => {
           <div>
             <div>
               <label>Carbon copy to user: </label>
+              <div className="email_addresses">
+                {ccEmailAddress.addresses.map((adr) => (
+                  <div key={adr} className="email_address_container">
+                    {adr}
+                    <button
+                      className="delete_button"
+                      onClick={() =>
+                        addressDeleteHandler(adr, setCcEmailAddress)
+                      }
+                    >
+                      &times;
+                    </button>
+                  </div>
+                ))}
+              </div>
               <input
                 type="email"
                 id="carbon_copy"
@@ -105,6 +126,21 @@ const EmailWrite = (props) => {
             </div>
             <div>
               <label>Blind carbon copy to user: </label>
+              <div className="email_addresses">
+                {bccEmailAddress.addresses.map((adr) => (
+                  <div key={adr} className="email_address_container">
+                    {adr}
+                    <button
+                      className="delete_button"
+                      onClick={() =>
+                        addressDeleteHandler(adr, setBccEmailAddress)
+                      }
+                    >
+                      &times;
+                    </button>
+                  </div>
+                ))}
+              </div>
               <input
                 type="email"
                 id="blind_carbon"
@@ -179,7 +215,9 @@ const EmailWrite = (props) => {
   function createEmailObject() {
     return {
       address:
-        0 < emailAddress.addresses.length ? emailAddress.addresses : "Bambi",
+        0 < emailAddress.addresses.length
+          ? emailAddress.addresses
+          : "test@test.hu",
       cc: ccEmailAddress.addresses,
       bcc: bccEmailAddress.addresses,
       subject: emailSubject.subject,
@@ -197,8 +235,8 @@ const EmailWrite = (props) => {
     );
   }
 
-  function addressDeleteHandler(address) {
-    setEmailAddress((prevState) => ({
+  function addressDeleteHandler(address, setState) {
+    setState((prevState) => ({
       ...prevState,
       addresses: prevState.addresses.filter((item) => item !== address),
     }));

@@ -50,3 +50,27 @@ form > button {
   width: $socialButtonSpanSize;
   height: $socialButtonSpanSize;
 }
+
+.email_content_container {
+  button {
+    border-radius: $borderRadius;
+    padding: $padding * 2;
+    min-width: $writeEmailButtonWidth;
+    font-weight: bold;
+    margin: $padding;
+  }
+}
+
+.email_address_container {
+  .delete_button {
+    padding: 1px;
+    min-width: 0;
+    margin: 1px;
+    border-width: 1px;
+    font-weight: normal;
+    &:hover {
+      color: red;
+      font-weight: bold;
+    }
+  }
+}
