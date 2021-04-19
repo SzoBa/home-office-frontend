@@ -5,6 +5,7 @@ import locationReducer from "./location";
 import loginReducer from "./login";
 import urlOptionReducer from "./urlOption";
 import writeEmailReducer from "./writeEmail";
+import messageDetailsReducer from "./messageDetails";
 
 const allReducers = combineReducers({
   login: loginReducer,
@@ -13,6 +14,7 @@ const allReducers = combineReducers({
   actualWeather: actualWeatherReducer,
   urlOption: urlOptionReducer,
   writeReadEmail: writeEmailReducer,
+  messageDetails: messageDetailsReducer,
 });
 
 export default allReducers;

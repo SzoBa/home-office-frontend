@@ -11,3 +11,6 @@ export const SET_URL_OPTION = "setUrlOption";
 
 export const WRITE_EMAIL = "writeEmail";
 export const READ_EMAIL = "readEmail";
+
+export const SET_MESSAGE_DETAILS = "setMessageDetails";
+export const DELETE_MESSAGE_DETAILS = "deleteMessageDetails";

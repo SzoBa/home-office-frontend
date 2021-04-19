@@ -13,11 +13,14 @@ import {
 } from "../../containers/ConstContainer";
 import EmailLoadingModal from "./EmailLoadingModal";
 import EmailDetailsModal from "./EmailDetailsModal";
+import { useSelector, useDispatch } from "react-redux";
+import { setMessageDetails as setMessageInfo } from "../../actions/index";
 
 const EmailTable = (props) => {
+  const message = useSelector((state) => state.messageDetails);
+  const dispatch = useDispatch();
   const [messageDetails, setMessageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState("");
 
   UseGetEmailData(setMessageDetails, setLoading);
 
@@ -33,9 +36,10 @@ const EmailTable = (props) => {
   const showSortedBy = (fieldName) => {
     return sortConfig.key === fieldName ? sortConfig.direction : "";
   };
+
   return (
     <React.Fragment>
-      {message && <EmailDetailsModal message={message} />}
+      {message.id && <EmailDetailsModal />}
       {loading ? (
         <EmailLoadingModal />
       ) : (
@@ -110,12 +114,14 @@ const EmailTable = (props) => {
   );
 
   function showMessageHandler(event, message) {
-    setMessage({
-      id: message.id,
-      sender: getDataFromMessage(message, FROM),
-      cc: "cc",
-      subject: getDataFromMessage(message, SUBJECT),
-    });
+    dispatch(
+      setMessageInfo({
+        id: message.id,
+        sender: getDataFromMessage(message, FROM),
+        cc: "cc",
+        subject: getDataFromMessage(message, SUBJECT),
+      })
+    );
   }
 
   function getDataFromMessage(message, dataName) {
