@@ -11,20 +11,21 @@ const EmailDetailsModal = (props) => {
   )[1];
   return (
     <div className="content_modal">
+      <button className="close_modal_button">X</button>
       <div>
-        <label>Sender:</label>
+        <label>Sender:&nbsp;</label>
         <div>{props.message.sender}</div>
       </div>
       <div>
-        <label>CC:</label>
+        <label>CC:&nbsp;</label>
         <div>{props.message.cc}</div>
       </div>
       <div>
-        <label>Subject:</label>
+        <label>Subject:&nbsp;</label>
         <div>{props.message.subject}</div>
       </div>
       <div>
-        <label>Message:</label>
+        <label>Message:&nbsp;</label>
         <div
           id="message_div"
           style={{ whiteSpace: "pre-wrap", textAlign: "left" }}

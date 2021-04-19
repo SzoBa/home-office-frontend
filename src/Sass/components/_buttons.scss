@@ -1,6 +1,7 @@
 button {
   cursor: pointer;
   outline: none;
+  padding: $padding;
 }
 
 a.button_text {
@@ -21,7 +22,6 @@ form > button {
   box-shadow: inset 0 1px 0 0 color(formButtonShadow);
   border: 1px solid color(formButtonBorder);
   border-radius: $borderRadius;
-  padding: $padding;
   text-shadow: 0 1px 0 color(formButtonTextShadow);
   margin: $upDownMargin;
   &:hover {
@@ -71,6 +71,27 @@ form > button {
     &:hover {
       color: red;
       font-weight: bold;
+    }
+  }
+}
+
+.content_modal {
+  button {
+    border-radius: $borderRadius * 2;
+    border-width: 0.5px;
+    margin-right: $simpleMargin * 2;
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+
+  .close_modal_button {
+    position: absolute;
+    right: 0;
+    &:hover {
+      color: red;
+      background-color: white;
     }
   }
 }

@@ -1,7 +1,18 @@
 .content_modal {
+  border: 1px solid black;
   > div {
     @include flexSetup(left, flex-start, row);
     width: $fullWidth;
+  }
+  label {
+    min-width: 80px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  > div:last-child {
+    @include flexSetup(flex-end, center, row);
+    padding: $padding;
   }
 }
 
@@ -11,4 +22,6 @@
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  border: 1px solid black;
+  padding-left: $padding;
 }
