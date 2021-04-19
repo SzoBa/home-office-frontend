@@ -10,7 +10,7 @@
   top: $headerHeight + $headerHeight * 2;
   left: $navbarWidth * 2;
   z-index: 1;
-  background-color: rgba(white, 0.9);
+  background-color: white;
   border-radius: $borderRadius * 3;
   padding: $padding * 3;
   @include flexSetup(flex-start, flex-start, column);
