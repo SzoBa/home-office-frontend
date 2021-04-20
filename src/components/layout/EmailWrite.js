@@ -6,6 +6,7 @@ import { Editor } from "@tinymce/tinymce-react";
 
 const EmailWrite = (props) => {
   const user = useSelector((state) => state.login);
+  const email = useSelector((state) => state.messageDetails);
   const [error, setError] = useState(null);
   const [emailAddress, setEmailAddress] = useState({
     addresses: [],
@@ -23,7 +24,7 @@ const EmailWrite = (props) => {
     subject: "",
   });
   const [mailEditorText, setMailEditorText] = useState(
-    "<p>Here write your mail</p>"
+    email.message ?? "<p>Here write your mail</p>"
   );
   // implement change and load by user
   const [signature, setSignature] = useState(
@@ -32,7 +33,6 @@ const EmailWrite = (props) => {
 
   function sendHandler(event) {
     const emailObject = createEmailObject();
-    console.log(emailObject);
     UsePostData(ENV.mails, user.sanctum_token, emailObject, (response) => {
       setError(null);
       if (response.status === 201) {
@@ -203,9 +203,9 @@ const EmailWrite = (props) => {
              alignleft aligncenter alignright alignjustify | \
              bullist numlist outdent indent | removeformat | help",
             }}
-            onEditorChange={(content, editor) => {
-              console.log("Content was updated:", content);
-            }}
+            // onEditorChange={(content, editor) => {
+            //   console.log("Content was updated:", content);
+            // }}
           />
         </div>
       </div>

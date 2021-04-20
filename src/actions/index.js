@@ -44,6 +44,7 @@ export const setMessageDetails = (payload) => ({
   type: actionTypes.SET_MESSAGE_DETAILS,
   payload: payload,
 });
+
 export const deleteMessageDetails = (payload) => ({
   type: actionTypes.DELETE_MESSAGE_DETAILS,
   payload: payload,

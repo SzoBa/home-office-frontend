@@ -1,6 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 
-const initialState = { id: "", sender: "", cc: "", subject: "" };
+const initialState = { id: "", sender: "", cc: "", subject: "", message: "" };
 
 const messageDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +10,7 @@ const messageDetailsReducer = (state = initialState, action) => {
         sender: action.payload.sender,
         cc: action.payload.cc,
         subject: action.payload.subject,
+        message: action.payload.message ?? "",
       };
 
     case actionTypes.DELETE_MESSAGE_DETAILS:
