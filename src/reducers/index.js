@@ -6,6 +6,7 @@ import loginReducer from "./login";
 import urlOptionReducer from "./urlOption";
 import writeEmailReducer from "./writeEmail";
 import messageDetailsReducer from "./messageDetails";
+import showMessageDetailsReducer from "./showMessageDetails";
 
 const allReducers = combineReducers({
   login: loginReducer,
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   urlOption: urlOptionReducer,
   writeReadEmail: writeEmailReducer,
   messageDetails: messageDetailsReducer,
+  showMessageDetails: showMessageDetailsReducer,
 });
 
 export default allReducers;

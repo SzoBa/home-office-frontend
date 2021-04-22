@@ -49,3 +49,13 @@ export const deleteMessageDetails = (payload) => ({
   type: actionTypes.DELETE_MESSAGE_DETAILS,
   payload: payload,
 });
+
+export const showMessageDetailsModal = (payload) => ({
+  type: actionTypes.SHOW_MESSAGE_DETAILS,
+  payload: payload,
+});
+
+export const hideMessageDetailsModal = (payload) => ({
+  type: actionTypes.HIDE_MESSAGE_DETAILS,
+  payload: payload,
+});

@@ -14,3 +14,6 @@ export const READ_EMAIL = "readEmail";
 
 export const SET_MESSAGE_DETAILS = "setMessageDetails";
 export const DELETE_MESSAGE_DETAILS = "deleteMessageDetails";
+
+export const SHOW_MESSAGE_DETAILS = "showMessageDetailsModal";
+export const HIDE_MESSAGE_DETAILS = "hideMessageDetailsModal";
