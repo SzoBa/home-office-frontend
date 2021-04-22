@@ -93,7 +93,7 @@
       padding: $padding * 3;
 
       > div {
-        @include flexSetup(space-evenly, flex-end, column);
+        @include flexSetup(space-evenly, flex-start, column);
       }
     }
 
@@ -111,11 +111,13 @@
   padding: $padding;
 }
 .email_address_container {
+  padding: 0 0 0 $padding;
   margin: 1px;
   border: 1px solid black;
   border-radius: $borderRadius;
   background: white;
   font-size: 0.8em;
+  white-space: nowrap;
 }
 
 #email_editor {
