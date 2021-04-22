@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import UsePostData from "../../hooks/UsePostData";
 import * as ENV from "../files/ENV.json";
 import { Editor } from "@tinymce/tinymce-react";
 
 const EmailWrite = (props) => {
+  const TEXT_EDITOR_WIDTH = "50vw";
+  const TEXT_EDITOR_HEIGHT = "70vh";
   const user = useSelector((state) => state.login);
   const email = useSelector((state) => state.messageDetails);
+  const inputElement = useRef();
+
   const [error, setError] = useState(null);
   const [emailAddress, setEmailAddress] = useState({
-    addresses: [],
+    addresses: email.sender ? email.sender : [],
     addressValue: "",
   });
   const [ccEmailAddress, setCcEmailAddress] = useState({
-    addresses: [],
+    addresses: email.cc ? email.cc : [],
     addressValue: "",
   });
   const [bccEmailAddress, setBccEmailAddress] = useState({
@@ -21,7 +25,7 @@ const EmailWrite = (props) => {
     addressValue: "",
   });
   const [emailSubject, setEmailSubject] = useState({
-    subject: "",
+    subject: email.sender ? "Re: " + email.subject : "",
   });
   const [mailEditorText, setMailEditorText] = useState(
     email.message ?? "<p>Here write your mail</p>"
@@ -84,13 +88,24 @@ const EmailWrite = (props) => {
               />
             </div>
             <div>
-              <label>Subject:</label>
+              <label>Subject:&nbsp;</label>
+              <div className="email_addresses"></div>
               <input
                 id="subject"
                 type="text"
                 name="subject"
                 value={emailSubject.subject}
                 onChange={emailSubjectChangeHandler}
+                ref={inputElement}
+                onFocus={(e) => {
+                  setTimeout(function () {
+                    setEmailSubject({ subject: e.target.value + " " });
+                    inputElement.current.setSelectionRange(
+                      inputElement.current.value.length - 1,
+                      inputElement.current.value.length
+                    );
+                  }, 1);
+                }}
               />
             </div>
           </div>
@@ -177,8 +192,8 @@ const EmailWrite = (props) => {
             initialValue={mailEditorText}
             init={{
               selector: "textarea#myTextArea",
-              height: 450,
-              width: "45vw",
+              height: TEXT_EDITOR_HEIGHT,
+              width: TEXT_EDITOR_WIDTH,
               id: "mailContent",
               menubar: true /**min_height setup - turn off when xs? */,
               mobile: {
