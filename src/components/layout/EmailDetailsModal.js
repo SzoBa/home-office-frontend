@@ -4,6 +4,7 @@ import useGetData from "../../hooks/UseGet";
 import * as ENV from "../files/ENV.json";
 import {
   deleteMessageDetails,
+  hideMessageDetailsModal,
   setMessageDetails,
   writeEmail,
 } from "../../actions/index";
@@ -17,6 +18,7 @@ const EmailDetailsModal = (props) => {
     ENV.mailMessage + message.id,
     user.sanctum_token
   )[1].toString();
+
   return (
     <div className="content_modal">
       <button
@@ -56,23 +58,37 @@ const EmailDetailsModal = (props) => {
   );
 
   function emailDetailsModalCloseHandler() {
+    dispatch(hideMessageDetailsModal());
     dispatch(deleteMessageDetails());
   }
 
   function answerHandler() {
-    let emailBody = `<p></p><div style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">${messageBody}</div>`;
     dispatch(
       setMessageDetails({
         ...message,
-        cc: "",
-        message: emailBody,
+        sender: getEmailsFromString(message.sender),
+        cc: getEmailsFromString(message.cc),
+        message: `<p></p>${messageBody}`,
       })
     );
     dispatch(writeEmail());
+    dispatch(hideMessageDetailsModal());
   }
 };
 
 export default EmailDetailsModal;
+
+function getEmailsFromString(str) {
+  const result = [];
+  const addresses = str.split(",");
+  addresses.forEach((address) => {
+    let actualResult = address.match("([<]).+([@]).+(.).{2,3}([>])");
+    if (actualResult) {
+      result.push(actualResult[0].substr(1, actualResult[0].length - 2));
+    }
+  });
+  return result;
+}
 
 function convert(text) {
   let resultHtml = "";
@@ -86,11 +102,11 @@ function convert(text) {
           break;
 
         case " ":
-          if (text[i - 1] != " " && text[i - 1] != "\t") resultHtml += " ";
+          if (text[i - 1] !== " " && text[i - 1] !== "\t") resultHtml += " ";
           break;
 
         case "\t":
-          if (text[i - 1] != "\t") resultHtml += " ";
+          if (text[i - 1] !== "\t") resultHtml += " ";
           break;
 
         case "&":

@@ -4,6 +4,7 @@ export const ASCENDING = "asc";
 export const DATE = "Date";
 export const SUBJECT = "Subject";
 export const FROM = "From";
+export const CC = "Cc";
 export const SNIPPET = "snippet";
 export const STRING = "string";
 export const FORECAST_DATE_KEY = "dt";

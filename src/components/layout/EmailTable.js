@@ -3,6 +3,7 @@ import UseGetEmailData from "../../hooks/UseGetEmailData";
 import useSortedData from "../../hooks/UseSortedData";
 
 import {
+  CC,
   DATE,
   DESCENDING,
   FROM,
@@ -14,16 +15,19 @@ import {
 import EmailLoadingModal from "./EmailLoadingModal";
 import EmailDetailsModal from "./EmailDetailsModal";
 import { useSelector, useDispatch } from "react-redux";
-import { setMessageDetails as setMessageInfo } from "../../actions/index";
+import {
+  setMessageDetails as setMessageInfo,
+  showMessageDetailsModal,
+} from "../../actions/index";
 
 const EmailTable = (props) => {
   const message = useSelector((state) => state.messageDetails);
+  const showMessageDetails = useSelector((state) => state.showMessageDetails);
   const dispatch = useDispatch();
   const [messageDetails, setMessageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
 
   UseGetEmailData(setMessageDetails, setLoading);
-
   const [sortedMessages, sortByField, sortConfig] = useSortedData(
     messageDetails,
     orderDetailsByKey,
@@ -39,7 +43,7 @@ const EmailTable = (props) => {
 
   return (
     <React.Fragment>
-      {message.id && <EmailDetailsModal />}
+      {showMessageDetails.show && <EmailDetailsModal />}
       {loading ? (
         <EmailLoadingModal />
       ) : (
@@ -75,33 +79,34 @@ const EmailTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {sortedMessages.map((message) => (
+            {sortedMessages.map((mail) => (
               <tr
-                key={message.id}
+                key={mail.id}
                 style={{
-                  fontWeight: message.labelIds.includes(UNREAD) ? "bold" : "",
+                  fontWeight: mail.labelIds.includes(UNREAD) ? "bold" : "",
                 }}
                 onClick={(e) => {
-                  showMessageHandler(e, message);
+                  showMessageHandler(e, mail);
                 }}
               >
-                <td>{setMaxChars(getDataFromMessage(message, SUBJECT))}</td>
+                <td>{setMaxChars(getDataFromMessage(mail, SUBJECT))}</td>
                 <td
                   dangerouslySetInnerHTML={{
-                    __html: setMaxChars(message[SNIPPET] + "..."),
+                    __html: setMaxChars(mail[SNIPPET] + "..."),
                   }}
                 ></td>
-                <td>{setMaxChars(getDataFromMessage(message, FROM))}</td>
+                <td>{setMaxChars(getDataFromMessage(mail, FROM))}</td>
                 <td>
-                  {new Date(
-                    getDataFromMessage(message, DATE)
-                  ).toLocaleTimeString(navigator.language, {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {new Date(getDataFromMessage(mail, DATE)).toLocaleTimeString(
+                    navigator.language,
+                    {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }
+                  )}
                 </td>
                 <td>Del icon</td>
                 <td>Unr icon</td>
@@ -118,16 +123,18 @@ const EmailTable = (props) => {
       setMessageInfo({
         id: message.id,
         sender: getDataFromMessage(message, FROM),
-        cc: "cc",
+        cc: getDataFromMessage(message, CC),
         subject: getDataFromMessage(message, SUBJECT),
       })
     );
+    dispatch(showMessageDetailsModal());
   }
 
   function getDataFromMessage(message, dataName) {
-    return message.payload.headers.filter(function (subject) {
+    const data = message.payload.headers.filter(function (subject) {
       return subject.name === dataName;
-    })[0].value;
+    });
+    return 0 < data.length ? data[0].value : "";
   }
 
   function setMaxChars(data, maxChars = 25) {
