@@ -7,6 +7,7 @@ import urlOptionReducer from "./urlOption";
 import writeEmailReducer from "./writeEmail";
 import messageDetailsReducer from "./messageDetails";
 import showMessageDetailsReducer from "./showMessageDetails";
+import { reducer as toastrReducer } from "react-redux-toastr";
 
 const allReducers = combineReducers({
   login: loginReducer,
@@ -17,6 +18,7 @@ const allReducers = combineReducers({
   writeReadEmail: writeEmailReducer,
   messageDetails: messageDetailsReducer,
   showMessageDetails: showMessageDetailsReducer,
+  toastr: toastrReducer,
 });
 
 export default allReducers;

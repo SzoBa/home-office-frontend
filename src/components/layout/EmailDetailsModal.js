@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useGetData from "../../hooks/UseGet";
+import UseDelete from "../../hooks/UseDelete";
 import * as ENV from "../files/ENV.json";
 import {
   deleteMessageDetails,
@@ -8,11 +9,25 @@ import {
   setMessageDetails,
   writeEmail,
 } from "../../actions/index";
+import { toastr } from "react-redux-toastr";
 
 const EmailDetailsModal = (props) => {
   const user = useSelector((state) => state.login);
   const message = useSelector((state) => state.messageDetails);
   const dispatch = useDispatch();
+
+  function deleteMessageHandler() {
+    let url = ENV.mailDelete + message.id;
+    UseDelete(url, user.sanctum_token, deleteAnswerHandler);
+  }
+
+  function deleteAnswerHandler(result) {
+    if (result.includes("deleted")) {
+      toastr.success(result);
+      dispatch(hideMessageDetailsModal());
+      dispatch(deleteMessageDetails());
+    }
+  }
 
   const messageBody = useGetData(
     ENV.mailMessage + message.id,
@@ -51,8 +66,8 @@ const EmailDetailsModal = (props) => {
       </div>
       <div>
         <button onClick={answerHandler}>Answer</button>
-        <button>Answer all</button>
-        <button>Delete</button>
+        <button onClick={answerAllHandler}>Answer all</button>
+        <button onClick={deleteMessageHandler}>Delete</button>
       </div>
     </div>
   );
@@ -62,12 +77,25 @@ const EmailDetailsModal = (props) => {
     dispatch(deleteMessageDetails());
   }
 
-  function answerHandler() {
+  function answerAllHandler() {
     dispatch(
       setMessageDetails({
         ...message,
         sender: getEmailsFromString(message.sender),
         cc: getEmailsFromString(message.cc),
+        message: `<p></p>${messageBody}`,
+      })
+    );
+    dispatch(writeEmail());
+    dispatch(hideMessageDetailsModal());
+  }
+
+  function answerHandler() {
+    dispatch(
+      setMessageDetails({
+        ...message,
+        sender: getEmailsFromString(message.sender),
+        cc: [],
         message: `<p></p>${messageBody}`,
       })
     );

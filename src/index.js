@@ -4,6 +4,7 @@ import App from "./App";
 import { createStore } from "redux";
 import allReducers from "./reducers";
 import { Provider } from "react-redux";
+import ReduxToastr from "react-redux-toastr";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -16,6 +17,17 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position="bottom-right"
+        getState={(state) => state.toastr}
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        progressBar
+        closeOnToastrClick
+      />
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")
