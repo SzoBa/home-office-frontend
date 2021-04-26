@@ -10,6 +10,7 @@ import {
   writeEmail,
 } from "../../actions/index";
 import { toastr } from "react-redux-toastr";
+import DOMPurify from "dompurify";
 
 const EmailDetailsModal = (props) => {
   const user = useSelector((state) => state.login);
@@ -60,7 +61,7 @@ const EmailDetailsModal = (props) => {
           id="message_div"
           style={{ whiteSpace: "pre-wrap", textAlign: "left" }}
           dangerouslySetInnerHTML={{
-            __html: messageBody.replace("/(<script>).+(</script>)/", ""),
+            __html: DOMPurify.sanitize(messageBody),
           }}
         ></div>
       </div>
@@ -116,48 +117,4 @@ function getEmailsFromString(str) {
     }
   });
   return result;
-}
-
-function convert(text) {
-  let resultHtml = "";
-  text = text.trim();
-  if (text.length > 0) {
-    resultHtml += "<p>";
-    for (let i = 0; i < text.length; i++) {
-      switch (text[i]) {
-        case "\n":
-          resultHtml += "</p><p>";
-          break;
-
-        case " ":
-          if (text[i - 1] !== " " && text[i - 1] !== "\t") resultHtml += " ";
-          break;
-
-        case "\t":
-          if (text[i - 1] !== "\t") resultHtml += " ";
-          break;
-
-        case "&":
-          resultHtml += "&amp;";
-          break;
-
-        case '"':
-          resultHtml += "&quot;";
-          break;
-
-        case ">":
-          resultHtml += "&gt;";
-          break;
-
-        case "<":
-          resultHtml += "&lt;";
-          break;
-
-        default:
-          resultHtml += text[i];
-      }
-    }
-    resultHtml += "</p>";
-  }
-  return resultHtml;
 }
