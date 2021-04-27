@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ASCENDING, DESCENDING } from "../containers/ConstContainer";
 
 const useSortedData = (
   data,
   sortingFunction,
-  config = { key: null, direction: null }
+  config = { key: null, direction: null },
+  stateSetter
 ) => {
   const [sortConfig, setSortConfig] = useState(config);
   const sortedData = useMemo(() => {
@@ -24,7 +25,14 @@ const useSortedData = (
         : DESCENDING;
     setSortConfig({ key: key, direction: direction });
   };
-  return [sortedData, sortByField, sortConfig];
+
+  useEffect(() => {
+    if (sortedData) {
+      stateSetter(sortedData);
+    }
+  }, [sortedData, stateSetter]);
+
+  return [sortByField, sortConfig];
 };
 
 export default useSortedData;

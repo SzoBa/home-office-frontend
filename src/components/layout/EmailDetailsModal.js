@@ -27,6 +27,7 @@ const EmailDetailsModal = (props) => {
       toastr.success(result);
       dispatch(hideMessageDetailsModal());
       dispatch(deleteMessageDetails());
+      message.deleteFunction(message.id);
     }
   }
 

@@ -21,20 +21,21 @@ import {
 } from "../../actions/index";
 
 const EmailTable = (props) => {
-  const message = useSelector((state) => state.messageDetails);
   const showMessageDetails = useSelector((state) => state.showMessageDetails);
   const dispatch = useDispatch();
   const [messageDetails, setMessageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [sortedMessages, setSortedMessages] = useState([]);
   UseGetEmailData(setMessageDetails, setLoading);
-  const [sortedMessages, sortByField, sortConfig] = useSortedData(
+
+  const [sortByField, sortConfig] = useSortedData(
     messageDetails,
     orderDetailsByKey,
     {
       key: DATE,
       direction: DESCENDING,
-    }
+    },
+    setSortedMessages
   );
 
   const showSortedBy = (fieldName) => {
@@ -118,6 +119,14 @@ const EmailTable = (props) => {
     </React.Fragment>
   );
 
+  function deleteMessageFromDetails(id) {
+    setSortedMessages(
+      sortedMessages.filter((item) => {
+        return item.id !== id;
+      })
+    );
+  }
+
   function showMessageHandler(event, message) {
     dispatch(
       setMessageInfo({
@@ -125,6 +134,7 @@ const EmailTable = (props) => {
         sender: getDataFromMessage(message, FROM),
         cc: getDataFromMessage(message, CC),
         subject: getDataFromMessage(message, SUBJECT),
+        deleteFunction: deleteMessageFromDetails,
       })
     );
     dispatch(showMessageDetailsModal());
