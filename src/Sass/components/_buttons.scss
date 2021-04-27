@@ -88,7 +88,9 @@ form > button {
 
   .close_modal_button {
     position: absolute;
-    right: 0;
+    right: $padding * 2;
+    top: $padding * 2;
+    margin: 0;
     &:hover {
       color: red;
       background-color: white;

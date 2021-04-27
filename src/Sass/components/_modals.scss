@@ -5,10 +5,10 @@
 
 .content_modal {
   position: fixed;
-  width: $fullWidth - $navbarWidth * 3;
-  height: 510px;
-  top: $headerHeight + $headerHeight * 2;
-  left: $navbarWidth * 2;
+  width: $fullWidth - $navbarWidth * 2;
+  min-height: 500px;
+  top: $headerHeight * 1.5;
+  left: $navbarWidth * 1.5;
   z-index: 1;
   background-color: white;
   border-radius: $borderRadius * 3;

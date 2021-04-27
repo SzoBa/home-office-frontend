@@ -12,12 +12,19 @@
 
   > div:last-child {
     @include flexSetup(flex-end, center, row);
-    padding: $padding;
+    padding-top: $padding * 2;
+  }
+
+  a {
+    color: blue;
+    &:hover {
+      background: none;
+    }
   }
 }
 
 #message_div {
-  height: 400px;
+  height: 70vh;
   width: inherit;
   bottom: 0;
   overflow-x: hidden;
