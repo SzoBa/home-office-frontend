@@ -3,12 +3,21 @@
 }
 
 .table_style {
+  thead tr th {
+    border: 2px;
+    border-style: solid;
+    border-color: transparent;
+    box-shadow: 0px -5px 5px rgba(169, 169, 169, 1);
+  }
+
   thead th:first-child {
-    border-radius: $borderRadius * 3 0 0 0;
+    border-radius: $borderRadius 0 0 0;
+    box-shadow: -2px -5px 5px rgba(169, 169, 169, 1);
   }
 
   thead th:last-child {
-    border-radius: 0 $borderRadius * 3 0 0;
+    border-radius: 0 $borderRadius 0 0;
+    box-shadow: 2px -5px 5px rgba(169, 169, 169, 1);
   }
 
   tbody tr:last-child td:first-child {
