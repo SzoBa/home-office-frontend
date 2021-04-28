@@ -28,3 +28,8 @@ export const PICTURE_WEATHER = {
 };
 
 export const WEATHER_ICON_PREFIX = "wI";
+
+export const CURRENCY_SHORT = "Currency";
+export const CURRENCY_LONG = "Currency (long)";
+export const CURRENCY_BUY = "Buy (HUF)";
+export const CURRENCY_SELL = "Sell (HUF)";
