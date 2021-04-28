@@ -9,8 +9,24 @@ const Header = (props) => {
     <div id="headerContainer">
       {useLocation().pathname !== "/" ? <Link to="/">Back to main</Link> : ""}
       <Link to="/weather">Weather forecast</Link>
-      <Link to="/">News</Link>
-      <Link to="/">Traffic info</Link>
+      <Link
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+        style={{ cursor: "default" }}
+        to="/"
+      >
+        News
+      </Link>
+      <Link
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+        style={{ cursor: "default" }}
+        to="/"
+      >
+        Traffic info
+      </Link>
       <Link to="/currency">Currency info</Link>
       <Link to="/email">Emails</Link>
       <Link to="/registration">Registration</Link>
