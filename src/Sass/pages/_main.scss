@@ -2,9 +2,12 @@
   @include contentDiv(400px, 30%);
   margin: -3% auto 3% auto;
   background: color(white);
+  text-align: left;
+  padding-left: 4%;
 
   > h4 {
     margin: 10px auto;
+    text-align: center;
   }
   > p {
     margin: 10px auto;
