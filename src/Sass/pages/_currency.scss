@@ -1,0 +1,29 @@
+#currency_table {
+  width: 80%;
+  margin: 0 auto 5%;
+  border-collapse: separate;
+  table-layout: fixed;
+
+  thead {
+    font-size: 1.1em;
+  }
+
+  thead tr :first-child {
+    width: 18%;
+  }
+  thead tr :nth-child(2) {
+    width: 31%;
+  }
+  thead tr :nth-child(3) {
+    width: 18%;
+  }
+  thead tr :last-child {
+    width: 18%;
+  }
+
+  tbody td {
+    padding: 2%;
+    padding-left: 8%;
+    height: unset;
+  }
+}
