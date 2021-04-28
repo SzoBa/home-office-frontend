@@ -1,0 +1,13 @@
+a {
+  height: $fullHeight;
+  @include flexSetup(center, center, column);
+  color: color(anchorBasic);
+  text-shadow: -0.5px 0.5px 0 #ffff;
+  text-decoration: none;
+  padding: 0 1% 0 1%;
+  &:hover {
+    color: color(anchorHover);
+    text-shadow: -0.5px 0.5px 0 #0000;
+    background-color: color(anchorBackgroundHover);
+  }
+}
