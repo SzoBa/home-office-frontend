@@ -41,6 +41,7 @@ $fullHeight: 100%;
 $notFullHeight: 94%;
 $notFullFixHeightContent: 86vh;
 $borderRadius: 5px;
+$borderRadiusPill: 9999px;
 $padding: 5px;
 $upDownMargin: 10px auto; //maybe 1-2em instead?
 $simpleMargin: 10px;
@@ -71,6 +72,12 @@ $emailLoadingPageColor: rgba(white, 0.7);
 $emailLoadingAnimatedPageColor: rgba(white, 0.85);
 $emailLoadingAnimationDuration: 3s;
 $emailLoadingPageAnimationRotation: -6deg;
+
+//other type of declaration
+:root {
+  --clr-neon-light: hsl(310, 100%, 56%);
+  --clr-neon-dark: hsl(321, 92%, 26%);
+}
 
 //ul -> list-style-type: none
 //margin: max(40px)

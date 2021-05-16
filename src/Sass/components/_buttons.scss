@@ -21,14 +21,14 @@ form > button {
   color: color(formButtonText);
   box-shadow: inset 0 1px 0 0 color(formButtonShadow);
   border: 1px solid color(formButtonBorder);
-  border-radius: $borderRadius;
+  border-radius: $borderRadiusPill;
   text-shadow: 0 1px 0 color(formButtonTextShadow);
   margin: $upDownMargin;
   &:hover {
     background: linear-gradient(
       to bottom,
-      color(formButtonLight) 5%,
-      color(formButtonDark) 100%
+      var(--clr-neon-light) 5%,
+      var(--clr-neon-dark) 100%
     );
   }
 }
@@ -38,7 +38,7 @@ form > button {
   background: color(socialButtonBackground);
   color: color(socialButton);
   padding: $padding;
-  border-radius: $borderRadius;
+  border-radius: $borderRadiusPill;
   border: thin solid color(socialButtonBorder);
   box-shadow: 1px 1px 1px color(socialButtonShadow);
   white-space: nowrap;
@@ -49,6 +49,7 @@ form > button {
   vertical-align: middle;
   width: $socialButtonSpanSize;
   height: $socialButtonSpanSize;
+  border-radius: $borderRadiusPill;
 }
 
 .email_content_container {
