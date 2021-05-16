@@ -1,5 +1,5 @@
 #content_div_registration {
-  @include contentDiv(400px, 40%);
+  @include contentDiv(400px, 40%, $borderRadius * 12);
   @include desktop() {
     padding: $padding * 5 $padding * 15 $padding * 5;
   }

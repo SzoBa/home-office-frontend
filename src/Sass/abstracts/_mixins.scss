@@ -29,7 +29,11 @@
   text-align: $textAlign;
 }
 
-@mixin contentDiv($minHeight: 400px, $maxWidth: 50%) {
+@mixin contentDiv(
+  $minHeight: 400px,
+  $maxWidth: 50%,
+  $borderRadius: $borderRadius * 4
+) {
   min-height: $minHeight;
   max-width: $maxWidth;
   min-width: 250px;
@@ -37,7 +41,7 @@
     0 2px 5px color(contentDivShadowOpMax),
     inset 0 -1px 2px color(contentDivShadowOpMid);
   padding: $padding * 5 $padding * 5 $padding * 5;
-  border-radius: $borderRadius * 4;
+  border-radius: $borderRadius;
   margin: $sideAutoMargin;
   background-color: color(contentDivBackground);
 }

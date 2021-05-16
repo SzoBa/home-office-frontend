@@ -1,5 +1,5 @@
 #content_div_main {
-  @include contentDiv(400px, 30%);
+  @include contentDiv(400px, 30%, $borderRadius * 12);
   margin: -3% auto 3% auto;
   background: color(white);
   text-align: left;
