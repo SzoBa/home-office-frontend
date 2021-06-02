@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import MainContainer from "./containers/MainContainer";
-import WeatherSetter from "./hooks/SetWeather";
+import WeatherSetter from "./hooks/UseSetWeather";
 import "./style/app.css";
 
 function App() {

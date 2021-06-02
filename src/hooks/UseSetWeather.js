@@ -9,7 +9,7 @@ import {
   WEATHER,
 } from "../containers/ConstContainer";
 
-const SetWeather = (props) => {
+const useSetWeather = (props) => {
   const locationData = useSelector((state) => state.location);
   const actualWeather = useSelector((state) => state.actualWeather);
   const dispatch = useDispatch();
@@ -100,4 +100,4 @@ const SetWeather = (props) => {
   }
 };
 
-export default SetWeather;
+export default useSetWeather;
